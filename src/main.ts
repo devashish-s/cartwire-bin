@@ -8,11 +8,12 @@ import { AppModule } from './app.module';
 import { join } from 'path';
 import { engine } from 'express-handlebars';
 import { printName } from './hbs/helpers';
+// import * as compression from 'compression';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(
     AppModule,
- //   new FastifyAdapter()
+    {logger: ['error', 'warn', 'log']}
   );
 
   app.useStaticAssets(join(__dirname, '..', 'public'));
@@ -34,7 +35,7 @@ async function bootstrap() {
   
   
   app.setViewEngine('hbs');
-
+//  app.use(compression());
   await app.listen(3000);
 }
 bootstrap();
