@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cartwire-bin-app
+spec:
+  selector:
+    matchLabels:
+      app: cartwire-bin-app
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: cartwire-bin-app
+    spec:
+      containers:
+        - name: cartwire-bin-app
+          image: cartwire/cartwire-bin-app
+          ports:
+            - containerPort: 3000
