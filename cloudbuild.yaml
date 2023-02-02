@@ -10,23 +10,23 @@ steps:
 #    - 'DB_CONNECT=${_SECRET_KEY}'
   # execute the tests
 #  - name: 'gcr.io/cloud-builders/npm'
-#    args: ['run', 'test']
+#    args: ['run', 'test'] 
 
   # build an artifact using the docker builder
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/$_PROJECT_ID/$_REPO_NAME:latest', '.']
+    args: ['build', '-t', 'gcr.io/exploring-gcp-373314/github_devashish-s_cartwire-bin:latest', '.']
 
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/$_PROJECT_ID/$_REPO_NAME:latest']
+    args: ['push', 'gcr.io/exploring-gcp-373314/github_devashish-s_cartwire-bin']
 
 # deploy container image to GKE
   - name: 'gcr.io/cloud-builders/gke-deploy'
     args:
     - run
     - --filename=kubernetes.yaml
-    - --image=gcr.io/$_PROJECT_ID/$_REPO_NAME:latest
-    - --location=us-central1-c
+    - --image=gcr.io/exploring-gcp-373314/github_devashish-s_cartwire-bin
+    - --location=us-central1-a
     - --cluster=mycluster
   
 images:
-  - 'gcr.io/$PROJECT_ID/$_REPO_NAME:latest'
+  - 'gcr.io/exploring-gcp-373314/github_devashish-s_cartwire-bin:latest'
