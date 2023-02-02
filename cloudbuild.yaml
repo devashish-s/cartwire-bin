@@ -26,7 +26,7 @@ steps:
     - --filename=kubernetes.yaml
     - --image=gcr.io/exploring-gcp-373314/github_devashish-s_cartwire-bin
     - --location=us-central1-a
-    - --cluster=mycluster
+    - --cluster=nginx-1-cluster
   
 images:
   - 'gcr.io/exploring-gcp-373314/github_devashish-s_cartwire-bin:latest'
