@@ -36,7 +36,7 @@ kubectl annotate serviceaccount admin-sa \
     --namespace=admin-ns \
     iam.gke.io/gcp-service-account=readwrite-secrets@exploring-gcp-373314.iam.gserviceaccount.com
 */ 
-
+ 
 @Injectable()
 export class AppService {
   //  getHello(): object {
