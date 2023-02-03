@@ -13,9 +13,9 @@ export class AppService {
     const request = {
       name,
     };
-    const response = await secretmanagerClient.getSecret(request);
-    console.log(response);
+   // const response = await secretmanagerClient.getSecret(request);
+    console.log(request);
     console.log(bin_info.title);
-    return {response, ...bin_info};
+    return {request, ...bin_info};
   }
 }
