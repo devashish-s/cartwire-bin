@@ -46,9 +46,9 @@ export class AppService {
     const request = {
       name,
     };
-    // const response = await secretmanagerClient.getSecret(request);
+     const response = await secretmanagerClient.accessSecretVersion(request);
     console.log(process.env.BERGLAS_SECRET);
-    console.log(request);
+    console.log(response);
     console.log(bin_info.title);
     return {request, ...bin_info};
   }
