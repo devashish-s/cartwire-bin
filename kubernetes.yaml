@@ -21,4 +21,4 @@ spec:
         imagePullPolicy: Always
         env:
         - name: BERGLAS_SECRET
-          value: "Tester"
+          value: sm://exploring-gcp-373314/CARTWIRE_BIN_PROD_DATABASE
