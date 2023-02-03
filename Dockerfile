@@ -12,7 +12,7 @@ RUN npm run build
 
 FROM node:alpine as production
 
-ARG NODE_ENV=production
+ARG NODE_ENV=gcp:secretmanager:projects/exploring-gcp-373314/secrets/CARTWIRE_BIN_STAGE_DATABASE
 ENV NODE_ENV=${NODE_ENV}
 
 WORKDIR /usr/src/app
