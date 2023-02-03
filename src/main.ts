@@ -39,3 +39,8 @@ async function bootstrap() {
   await app.listen(3000);
 }
 bootstrap();
+
+/*
+Update the WSL kernel by running "wsl --update" or follow instructions at 
+https://docs.microsoft.com/windows/wsl/wsl2-kernel
+*/

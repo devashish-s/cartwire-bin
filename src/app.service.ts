@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 const { SecretManagerServiceClient } = require('@google-cloud/secret-manager').v1;
 const bin_info = require('../test.json');
+require('dotenv').config()
 
 // import * as bin_info from 'test.json';
 // gcloud secrets versions access "latest" --secret "CARTWIRE_BIN_PROD_DATABASE"
@@ -45,7 +46,8 @@ export class AppService {
     const request = {
       name,
     };
-    const response = await secretmanagerClient.getSecret(request);
+    // const response = await secretmanagerClient.getSecret(request);
+    console.log(process.env.BERGLAS_SECRET);
     console.log(request);
     console.log(bin_info.title);
     return {request, ...bin_info};
