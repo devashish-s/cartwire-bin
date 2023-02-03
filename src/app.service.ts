@@ -9,7 +9,7 @@ const bin_info = require('../test.json');
 export class AppService {
   //  getHello(): object {
   async getHello() {
-    const name = 'projects/exploring-gcp-373314/secrets/CARTWIRE_BIN_PROD_DATABASE/versions/latest'
+    const name = 'projects/exploring-gcp-373314/secrets/CARTWIRE_BIN_PROD_DATABASE/versions/1'
     const secretmanagerClient = new SecretManagerServiceClient();
     const request = {
       name,
