@@ -19,3 +19,6 @@ spec:
       - name: "cartwirebinapp"
         image: "gcr.io/exploring-gcp-373314/github_devashish-s_cartwire-bin:latest"
         imagePullPolicy: Always
+        env:
+        - name: BERGLAS_SECRET
+          value: "Tester"
