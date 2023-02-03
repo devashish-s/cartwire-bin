@@ -1,3 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: entrypoint
+  labels:
+    app: default-init
+data:
+  entrypoint.sh: |
+    #!/usr/bin/env bash
+    set -euo pipefail
+    echo $(gcloud secrets versions access latest --project=exploring-gcp-373314 --secret=CARTWIRE_BIN_PROD_DATABASE) >> $SECRET_PATH
+---
 apiVersion: "apps/v1"
 kind: "Deployment"
 metadata:
@@ -15,6 +27,25 @@ spec:
       labels:
         app: "cartwirebinapp"
     spec:
+      serviceAccountName: secret-ksa
+      initContainers:
+      - image: gcr.io/google.com/cloudsdktool/cloud-sdk:slim
+        name: init
+        command: ["/scripts/entrypoint.sh"]
+        volumeMounts:
+        - mountPath: /scripts
+          name: entrypoint
+        - mountPath: /var/secrets
+          name: secret-volume
+        env:
+        - name: PROJECT_ID
+          value: "exploring-gcp-373314"
+        - name: SECRET_NAME
+          value: "CARTWIRE_BIN_PROD_DATABASE"
+        - name: SECRET_VERSION
+          value: "1"
+        - name: SECRET_PATH
+          value: "${SECRET_PATH}"
       containers:
       - name: "cartwirebinapp"
         image: "gcr.io/exploring-gcp-373314/github_devashish-s_cartwire-bin:latest"
