@@ -1,21 +1,21 @@
-apiVersion: "cartwire-bin-app/v1"
+apiVersion: "apps/v1"
 kind: "Deployment"
 metadata:
-  name: "cartwire-bin-app"
+  name: "cartwirebinapp"
   namespace: "default"
   labels:
-    app: "cartwire-bin-app"
+    app: "cartwirebinapp"
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: "cartwire-bin-app"
+      app: "cartwirebinapp"
   template:
     metadata:
       labels:
-        app: "cartwire-bin-app"
+        app: "cartwirebinapp"
     spec:
       containers:
-      - name: "cartwire-bin-app"
+      - name: "cartwirebinapp"
         image: "gcr.io/exploring-gcp-373314/github_devashish-s_cartwire-bin:latest"
         imagePullPolicy: Always
