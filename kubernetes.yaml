@@ -21,4 +21,5 @@ spec:
         imagePullPolicy: Always
         env:
         - name: BERGLAS_SECRET
-          value: sm://exploring-gcp-373314/CARTWIRE_BIN_PROD_DATABASE
+          value: gcp:secretmanager:projects/exploring-gcp-373314/secrets/CARTWIRE_BIN_PROD_DATABASE
+          
