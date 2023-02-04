@@ -51,6 +51,7 @@ export class AppService {
     console.log(process.env.NODE_ENV);
     console.log(process.env.NODE_ENVW);
     console.log(process.env.NODE_ENV_STAGE);
+    console.log(process.env.DB_CONNECT);
    // console.log(response);
     console.log(bin_info.title);
     return {request, ...bin_info};
