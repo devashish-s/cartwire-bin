@@ -8,6 +8,7 @@ steps:
     args: ['run', 'create-env']
     env:
     - 'DB_CONNECT=${_SECRET_KEY}'
+    - 'DB_CONNECT2=DB_CONNECT2'
   # execute the tests
 #  - name: 'gcr.io/cloud-builders/npm'
 #    args: ['run', 'test'] 
