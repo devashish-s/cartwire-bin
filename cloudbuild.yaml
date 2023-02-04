@@ -7,7 +7,7 @@ steps:
   - name: 'gcr.io/cloud-builders/npm'
     args: ['run', 'create-env']
     env:
-    - 'DB_CONNECT=${gcp:secretmanager:projects/exploring-gcp-373314/secrets/CARTWIRE_BIN_STAGE_DATABASE}'
+    - 'DB_CONNECT=${_SECRET_KEY}'
   # execute the tests
 #  - name: 'gcr.io/cloud-builders/npm'
 #    args: ['run', 'test'] 
