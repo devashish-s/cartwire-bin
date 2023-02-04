@@ -47,13 +47,9 @@ export class AppService {
       name,
     };
     // const response = await secretmanagerClient.accessSecretVersion(request);
-   /* console.log(process.env.BERGLAS_SECRET);
-    console.log(process.env.NODE_ENV);
-    console.log(process.env.NODE_ENVW);
-    console.log(process.env.NODE_ENV_STAGE); */
+   
     console.log(process.env.DB_CONNECT);
     console.log(process.env.DB_VAR);
-    console.log(process.env);
    // console.log(response);
     console.log(bin_info.title);
     return {request, ...bin_info};

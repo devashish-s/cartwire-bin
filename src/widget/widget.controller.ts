@@ -19,16 +19,16 @@ export class WidgetController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.widgetService.findOne(+id);
+    return this.widgetService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateWidgetDto: UpdateWidgetDto) {
-    return this.widgetService.update(+id, updateWidgetDto);
+    return this.widgetService.update(id, updateWidgetDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.widgetService.remove(+id);
+    return this.widgetService.remove(id);
   }
 }
