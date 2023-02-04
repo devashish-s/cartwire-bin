@@ -1,8 +1,9 @@
 import { Model } from 'mongoose';
-import { Injectable, Inject, NotFoundException  } from '@nestjs/common';
+import { Injectable, Inject, NotFoundException } from '@nestjs/common';
 import { CreateWidgetDto } from './dto/create-widget.dto';
 import { UpdateWidgetDto } from './dto/update-widget.dto';
 import { Widget } from './interfaces/widget.interface';
+import * as mongoose from 'mongoose';
 
 @Injectable()
 export class WidgetService {
@@ -16,16 +17,33 @@ export class WidgetService {
   }
 
   async findAll() {
-   // return await this.widgetModel.find().exec();
-   return 'This action return all widget';
+    // return await this.widgetModel.find().exec();
+    return 'This action return all widget';
   }
 
   async findOne(id: string) {
-    const existingStudent = await this.widgetModel.findById(id).exec();
-    if (!existingStudent) {
-      throw new NotFoundException(`Student #${id} not found`);
+    // const existingWidget = await this.widgetModel.findById(id).exec();
+    const existingWidget = await this.widgetModel.aggregate([
+      {
+        $match: {
+          _id: new mongoose.Types.ObjectId(id)
+        }
+      },
+      {
+
+        $lookup: {
+          from: "bin_theme_config",
+          localField: "bin_theme_doc_id",
+          foreignField: "_id",
+          as: "userdata",
+        },
+
+      }
+    ]).exec();
+    if (!existingWidget) {
+      throw new NotFoundException(`Widget #${id} not found`);
     }
-    return existingStudent;
+    return existingWidget;
   }
 
   update(id: any, updateWidgetDto: UpdateWidgetDto) {

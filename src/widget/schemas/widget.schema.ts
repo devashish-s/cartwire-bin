@@ -1,7 +1,4 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { HydratedDocument } from 'mongoose';
-
-export type WidgetDocument = HydratedDocument<Widget>;
 
 @Schema({ collection: 'bin_data' })
 export class Widget {
@@ -9,7 +6,7 @@ export class Widget {
   hash_key: String;
 
   @Prop()
-  product_cw_id: Number;
+  product_cw_id: String;
 
   @Prop()
   product_sku: String;

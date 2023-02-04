@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { WidgetService } from './widget.service';
 import { WidgetController } from './widget.controller';
-import { widgetProviders } from './widget..providers';
+import { widgetProviders } from './widget.providers';
 import { DatabaseModule } from '../database/database.module';
 
 @Module({

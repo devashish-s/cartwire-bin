@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
-const { SecretManagerServiceClient } = require('@google-cloud/secret-manager').v1;
 const bin_info = require('../test.json');
-require('dotenv').config()
+import { ConfigService } from '@nestjs/config';
 
 // import * as bin_info from 'test.json';
 // gcloud secrets versions access "latest" --secret "CARTWIRE_BIN_PROD_DATABASE"
@@ -40,18 +39,13 @@ kubectl annotate serviceaccount admin-sa \
 @Injectable()
 export class AppService {
   //  getHello(): object {
+    constructor(private configService: ConfigService) {}
+
   async getHello() {
-    const name = 'projects/exploring-gcp-373314/secrets/CARTWIRE_BIN_PROD_DATABASE/versions/1'
-    const secretmanagerClient = new SecretManagerServiceClient();
-    const request = {
-      name,
-    };
-    // const response = await secretmanagerClient.accessSecretVersion(request);
    
-    console.log(process.env.DB_CONNECT);
-    console.log(process.env.DB_VAR);
+    console.log(this.configService.get<string>('DB_CONNECT'));
+    console.log(this.configService.get<string>('DB_VAR'));
    // console.log(response);
-    console.log(bin_info.title);
-    return {request, ...bin_info};
+    return {... bin_info};
   }
 }

@@ -4,9 +4,11 @@ import { AppService } from './app.service';
 import { ErrorCodeModule } from './error_code/error_code.module';
 import { WidgetModule } from './widget/widget.module';
 import { RetailerInfoModule } from './retailer_info/retailer_info.module';
+import { ConfigModule } from '@nestjs/config';
+
 
 @Module({
-  imports: [ErrorCodeModule, WidgetModule, RetailerInfoModule],
+  imports: [ConfigModule.forRoot(), ErrorCodeModule, WidgetModule, RetailerInfoModule],
   controllers: [AppController],
   providers: [AppService],
 })
