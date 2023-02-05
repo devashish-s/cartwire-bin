@@ -6,3 +6,4 @@ SECRET_VALUE= gcloud secrets versions access latest --secret="$SECRET_NAME" --pr
 
 # store the secret value in an environment variable
 export MY_SECRET="$SECRET_VALUE"
+export MY_SECRET_D="testestestest"
