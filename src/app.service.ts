@@ -48,8 +48,11 @@ export class AppService {
     console.log(this.configService.get<string>('DB_CONNECT'));
     console.log(this.configService.get<string>('DB_VAR'));
 
-    await accessSecretVersion("exploring-gcp-373314", "CARTWIRE_BIN_PROD_DATABASE");
-    // console.log(response);
+    let response = await accessSecretVersion("exploring-gcp-373314", "CARTWIRE_BIN_PROD_DATABASE");
+
+    console.log('SECRET_PASSWORD-',this.configService.get<string>('SECRET_PASSWORD'));
+
+     console.log(response);
     return { ...bin_info };
   }
 
