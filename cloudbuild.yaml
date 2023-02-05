@@ -10,6 +10,22 @@ steps:
     - 'DB_CONNECT=${_SECRET_KEY}'
     - 'DB_VAR=${_MY_VAR}'
     - 'DB_CONNECT2=DB_CONNECT2'
+
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'bash'
+    args:
+    - '-eEuo'
+    - 'pipefail'
+    - '-c'
+    - |-
+      SECRET_NAME="CARTWIRE_BIN_PROD_DATABASE"
+      PROJECT_ID="exploring-gcp-373314"
+
+      # retrieve the secret value
+      SECRET_VALUE=$(gcloud secrets versions access latest --secret="$SECRET_NAME" --project="$PROJECT_ID")
+
+      # store the secret value in an environment variable
+      export MY_SECRET="$SECRET_VALUE"
   # execute the tests
 #  - name: 'gcr.io/cloud-builders/npm'
 #    args: ['run', 'test'] 
