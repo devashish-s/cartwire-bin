@@ -16,6 +16,12 @@ steps:
       #!/usr/bin/env bash
       export SECRET_VALUE=$(gcloud secrets versions access latest --secret="CARTWIRE_BIN_PROD_DATABASE" --project="exploring-gcp-373314")
 
+  - name: 'bash'
+    args: ['echo', '$(gcloud secrets versions access latest --secret="CARTWIRE_BIN_PROD_DATABASE" --project="exploring-gcp-373314")']
+
+  - name: 'gcr.io/cloud-builders/gcloud'
+    entrypoint: 'bash'
+    args: ['tools/myScript.sh','--foo']
   # execute the tests
 #  - name: 'gcr.io/cloud-builders/npm'
 #    args: ['run', 'test'] 
