@@ -52,7 +52,8 @@ export class AppService {
 
    // console.log('SECRET_PASSWORD-',this.configService.get<string>('SECRET_PASSWORD'));
 
-     console.log("MY_SECRET");
+   console.log(process.env.MY_SECRET);
+   console.log(this.configService.get<string>('MY_SECRET'));
     return { ...bin_info };
   }
 
