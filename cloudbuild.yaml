@@ -21,7 +21,7 @@ steps:
 
   - name: 'gcr.io/cloud-builders/gcloud'
     entrypoint: 'bash'
-    args: ['tools/myScript.sh','--foo']
+    args: ['bash.sh','--foo']
   # execute the tests
 #  - name: 'gcr.io/cloud-builders/npm'
 #    args: ['run', 'test'] 
