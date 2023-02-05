@@ -2,6 +2,8 @@ import { Injectable } from '@nestjs/common';
 const bin_info = require('../test.json');
 import { ConfigService } from '@nestjs/config';
 
+const { SecretManagerServiceClient } = require('@google-cloud/secret-manager');
+
 // import * as bin_info from 'test.json';
 // gcloud secrets versions access "latest" --secret "CARTWIRE_BIN_PROD_DATABASE"
 /*
@@ -34,18 +36,38 @@ gcloud iam service-accounts add-iam-policy-binding readwrite-secrets@exploring-g
 kubectl annotate serviceaccount admin-sa \
     --namespace=admin-ns \
     iam.gke.io/gcp-service-account=readwrite-secrets@exploring-gcp-373314.iam.gserviceaccount.com
-*/ 
- 
+*/
+
 @Injectable()
 export class AppService {
   //  getHello(): object {
-    constructor(private configService: ConfigService) {}
+  constructor(private configService: ConfigService) { }
 
   async getHello() {
-   
+
     console.log(this.configService.get<string>('DB_CONNECT'));
     console.log(this.configService.get<string>('DB_VAR'));
-   // console.log(response);
-    return {... bin_info};
+
+    await accessSecretVersion("exploring-gcp-373314", "CARTWIRE_BIN_PROD_DATABASE");
+    // console.log(response);
+    return { ...bin_info };
   }
+
+
+
+}
+
+
+async function accessSecretVersion(projectId: string, secretId: string) {
+  // Create the client
+  const client = new SecretManagerServiceClient();
+
+  // Build the resource name of the secret
+  const name = client.secretVersionPath(projectId, secretId, 'latest');
+
+  // Access the secret value
+  const [version] = await client.accessSecretVersion({ name });
+  const secretValue = version.payload.data.toString();
+
+  return secretValue;
 }
