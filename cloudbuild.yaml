@@ -17,7 +17,12 @@ steps:
       - -c
       - |
         export MY_SECRET=$(gcloud secrets versions access latest --secret="CARTWIRE_BIN_PROD_DATABASE" --project="exploring-gcp-373314")
-        echo "The value of MY_SECRET is: MY_SECRET"
+
+  - name: 'gcr.io/cloud-builders/bash'
+    args:
+      - -c
+      - |
+        kubectl set env deployment my-deployment MY_ENV_VAR=$(gcloud secrets versions access latest --secret="CARTWIRE_BIN_PROD_DATABASE" --project="exploring-gcp-373314")
 
   - name: 'bash'
     script: |
