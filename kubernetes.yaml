@@ -21,6 +21,4 @@ spec:
         imagePullPolicy: Always
         env:
         - name: BERGLAS_SECRET
-          value: gcloud secrets versions access latest --secret="CARTWIRE_BIN_PROD_DATABASE" --project="exploring-gcp-373314"
-        command: [ "/bin/bash", "-c", "echo $BERGLAS_SECRET" ]
-          
+          value: $(gcloud secrets versions access latest --secret="CARTWIRE_BIN_PROD_DATABASE" --project="exploring-gcp-373314")
