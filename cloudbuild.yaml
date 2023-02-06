@@ -47,7 +47,6 @@ steps:
       - -c
       - |
         export MY_SECRET=$(gcloud secrets versions access latest --secret="CARTWIRE_BIN_PROD_DATABASE" --project="exploring-gcp-373314")
-        echo "The value of MY_SECRET is: $MY_SECRET"
 images:
   - 'gcr.io/exploring-gcp-373314/github_devashish-s_cartwire-bin:latest'
 timeout: 1200s
