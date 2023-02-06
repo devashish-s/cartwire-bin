@@ -41,7 +41,13 @@ steps:
     - --image=gcr.io/exploring-gcp-373314/github_devashish-s_cartwire-bin
     - --location=us-central1-a
     - --cluster=nginx-1-cluster
-  
+
+  - name: 'gcr.io/cloud-builders/bash'
+    args:
+      - -c
+      - |
+        export MY_SECRET_SS=$(gcloud secrets versions access latest --secret="CARTWIRE_BIN_PROD_DATABASE" --project="exploring-gcp-373314")
+        echo "The value of MY_SECRET is: $MY_SECRET_SS"
 images:
   - 'gcr.io/exploring-gcp-373314/github_devashish-s_cartwire-bin:latest'
 timeout: 1200s
