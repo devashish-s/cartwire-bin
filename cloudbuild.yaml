@@ -28,7 +28,7 @@ steps:
 
   # build an artifact using the docker builder
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/exploring-gcp-373314/github_devashish-s_cartwire-bin:latest', '.']
+    args: ['build', '-t', 'gcr.io/exploring-gcp-373314/github_devashish-s_cartwire-bin:latest', '--build-arg=ENV=$_MY_VARIABLE', '.']
 
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/exploring-gcp-373314/github_devashish-s_cartwire-bin']
@@ -45,3 +45,5 @@ steps:
 images:
   - 'gcr.io/exploring-gcp-373314/github_devashish-s_cartwire-bin:latest'
 timeout: 1200s
+substitutions:
+  _MY_VARIABLE: default value if not passed in the build command
