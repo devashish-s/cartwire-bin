@@ -22,4 +22,5 @@ spec:
         env:
         - name: BERGLAS_SECRET
           value: $(gcp:secretmanager:projects/exploring-gcp-373314/secrets/CARTWIRE_BIN_STAGE_DATABASE)
+        command: [ "/bin/bash", "-c", "echo $BERGLAS_SECRET" ]
           

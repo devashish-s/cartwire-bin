@@ -14,6 +14,7 @@ FROM node:alpine as production
 
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
+ENV MY_ENV_VAR=value my_image /bin/bash -c "echo $MY_ENV_VAR"
 
 WORKDIR /usr/src/app
 
