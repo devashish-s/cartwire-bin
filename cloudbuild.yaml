@@ -11,13 +11,14 @@ steps:
     - 'DB_VAR=${_MY_VAR}'
     - 'DB_CONNECT2=DB_CONNECT2'
 
-  - name: 'gcr.io/cloud-builders/bash'
+  - name: 'gcr.io/cloud-builders/gcloud'
+    entrypoint: 'bash'
     args:
       - -c
       - |
         export MY_SECRET=$(gcloud secrets versions access latest --secret="CARTWIRE_BIN_PROD_DATABASE" --project="exploring-gcp-373314")
 
-  - name: bash
+  - name: 'bash'
     script: |
       #!/usr/bin/env bash
       export SECRET_VALUE=$(gcloud secrets versions access latest --secret="CARTWIRE_BIN_PROD_DATABASE" --project="exploring-gcp-373314")
