@@ -33,6 +33,13 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/exploring-gcp-373314/github_devashish-s_cartwire-bin']
 
+
+  - name: 'gcr.io/cloud-builders/bash'
+    args:
+      - -c
+      - |
+        export MY_SECRET=$(gcloud secrets versions access latest --secret="CARTWIRE_BIN_PROD_DATABASE" --project="exploring-gcp-373314")
+
 # deploy container image to GKE
   - name: 'gcr.io/cloud-builders/gke-deploy'
     args:
@@ -41,12 +48,6 @@ steps:
     - --image=gcr.io/exploring-gcp-373314/github_devashish-s_cartwire-bin
     - --location=us-central1-a
     - --cluster=nginx-1-cluster
-
-  - name: 'gcr.io/cloud-builders/bash'
-    args:
-      - -c
-      - |
-        export MY_SECRET=$(gcloud secrets versions access latest --secret="CARTWIRE_BIN_PROD_DATABASE" --project="exploring-gcp-373314")
 images:
   - 'gcr.io/exploring-gcp-373314/github_devashish-s_cartwire-bin:latest'
 timeout: 1200s
