@@ -43,7 +43,7 @@ steps:
     
   # build an artifact using the docker builder
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/exploring-gcp-373314/github_devashish-s_cartwire-bin:latest', '--build-arg=ENV=$_MY_VARIABLE', '.']
+    args: ['build', '-t', 'gcr.io/exploring-gcp-373314/github_devashish-s_cartwire-bin:latest', '.']
 
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/exploring-gcp-373314/github_devashish-s_cartwire-bin']
@@ -54,8 +54,8 @@ steps:
     - run
     - --filename=kubernetes.yaml
     - --image=gcr.io/exploring-gcp-373314/github_devashish-s_cartwire-bin
-    - --location=us-central1-a
-    - --cluster=nginx-1-cluster
+    - --location=us-central1-c
+    - --cluster=cartwire-bin-cluster
   
 images:
   - 'gcr.io/exploring-gcp-373314/github_devashish-s_cartwire-bin:latest'
