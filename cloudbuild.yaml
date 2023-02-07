@@ -44,6 +44,10 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/exploring-gcp-373314/github_devashish-s_cartwire-bin']
 
+  - name: 'gcr.io/cloud-builders/gcloud'
+    entrypoint: 'bash'
+    args: ['bash.sh','--foo']
+    
 # deploy container image to GKE
   - name: 'gcr.io/cloud-builders/gke-deploy'
     args:
@@ -53,10 +57,6 @@ steps:
     - --location=us-central1-a
     - --cluster=nginx-1-cluster
   
-  - name: 'gcr.io/cloud-builders/gcloud'
-    entrypoint: 'bash'
-    args: ['bash.sh','--foo']
-    
 images:
   - 'gcr.io/exploring-gcp-373314/github_devashish-s_cartwire-bin:latest'
 timeout: 1200s
