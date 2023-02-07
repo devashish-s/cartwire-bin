@@ -11,31 +11,28 @@ steps:
     - 'DB_VAR=${_MY_VAR}'
     - 'DB_CONNECT2=DB_CONNECT2'
 
-  - name: 'gcr.io/cloud-builders/gcloud'
-    entrypoint: 'bash'
-    args:
-      - -c
-      - |
-        export MY_SECRET=$(gcloud secrets versions access latest --secret="CARTWIRE_BIN_PROD_DATABASE" --project="exploring-gcp-373314")
+#  - name: 'gcr.io/cloud-builders/gcloud'
+#    entrypoint: 'bash'
+#    args:
+#      - -c
+#      - |
+#        export MY_SECRET=$(gcloud secrets versions access latest --secret="CARTWIRE_BIN_PROD_DATABASE" --project="exploring-gcp-373314")
 
-  - name: 'gcr.io/cloud-builders/gcloud'
-    entrypoint: 'bash'
-    args:
-      - -c
-      - |
-        kubectl set env deployment my-deployment MY_ENV_VAR=$(gcloud secrets versions access latest --secret="CARTWIRE_BIN_PROD_DATABASE" --project="exploring-gcp-373314")
+#  - name: 'gcr.io/cloud-builders/gcloud'
+#    entrypoint: 'bash'
+#    args:
+#      - -c
+#      - |
+#        kubectl set env deployment my-deployment MY_ENV_VAR=$(gcloud secrets versions access latest --secret="CARTWIRE_BIN_PROD_DATABASE" --project="exploring-gcp-373314")
 
-  - name: 'bash'
-    script: |
-      #!/usr/bin/env bash
-      export SECRET_VALUE=$(gcloud secrets versions access latest --secret="CARTWIRE_BIN_PROD_DATABASE" --project="exploring-gcp-373314")
+#  - name: 'bash'
+#    script: |
+#      #!/usr/bin/env bash
+#      export SECRET_VALUE=$(gcloud secrets versions access latest --secret="CARTWIRE_BIN_PROD_DATABASE" --project="exploring-gcp-373314")
 
-  - name: 'bash'
-    args: ['echo', 'gcloud secrets versions access latest --secret="CARTWIRE_BIN_PROD_DATABASE" --project="exploring-gcp-373314"']
+#  - name: 'bash'
+#    args: ['echo', 'gcloud secrets versions access latest --secret="CARTWIRE_BIN_PROD_DATABASE" --project="exploring-gcp-373314"']
 
-  - name: 'gcr.io/cloud-builders/gcloud'
-    entrypoint: 'bash'
-    args: ['bash.sh','--foo']
   # execute the tests
 #  - name: 'gcr.io/cloud-builders/npm'
 #    args: ['run', 'test'] 
@@ -55,6 +52,11 @@ steps:
     - --image=gcr.io/exploring-gcp-373314/github_devashish-s_cartwire-bin
     - --location=us-central1-a
     - --cluster=nginx-1-cluster
+  
+  - name: 'gcr.io/cloud-builders/gcloud'
+    entrypoint: 'bash'
+    args: ['bash.sh','--foo']
+    
 images:
   - 'gcr.io/exploring-gcp-373314/github_devashish-s_cartwire-bin:latest'
 timeout: 1200s
