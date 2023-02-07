@@ -37,6 +37,10 @@ steps:
 #  - name: 'gcr.io/cloud-builders/npm'
 #    args: ['run', 'test'] 
 
+  - name: 'gcr.io/cloud-builders/gcloud'
+    entrypoint: 'bash'
+    args: ['bash.sh','--foo']
+    
   # build an artifact using the docker builder
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'gcr.io/exploring-gcp-373314/github_devashish-s_cartwire-bin:latest', '--build-arg=ENV=$_MY_VARIABLE', '.']
@@ -44,10 +48,6 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/exploring-gcp-373314/github_devashish-s_cartwire-bin']
 
-  - name: 'gcr.io/cloud-builders/gcloud'
-    entrypoint: 'bash'
-    args: ['bash.sh','--foo']
-    
 # deploy container image to GKE
   - name: 'gcr.io/cloud-builders/gke-deploy'
     args:
