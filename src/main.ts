@@ -29,14 +29,17 @@ async function bootstrap() {
 
   app.setViewEngine('hbs');
 
- // "origin": "*",
-  
-  app.enableCors({
-    "origin": false,
-    "methods": "DELETE",
-    "preflightContinue": false,
-    "optionsSuccessStatus": 204
-  });
+  // "origin": "*",
+ 
+
+    app.enableCors({
+      "origin": [
+        'https://www.google.com'
+      ],
+      "methods": "DELETE",
+      "preflightContinue": false,
+      "optionsSuccessStatus": 204
+    });
 
   //  app.use(compression());
   await app.listen(3000);
