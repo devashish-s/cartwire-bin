@@ -9,15 +9,12 @@ import { printName } from './hbs/helpers';
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(
     AppModule,
-    {logger: ['error', 'warn', 'log']}
+    { logger: ['error', 'warn', 'log'] }
   );
 
   app.useStaticAssets(join(__dirname, '..', 'public'));
   app.setBaseViewsDir(join(__dirname, '..', 'views'));
 
-  // app.engine('hbs', engine({ extname: 'hbs' }));
-
-  
   app.engine(
     'hbs',
     engine({
@@ -28,10 +25,20 @@ async function bootstrap() {
       helpers: { printName },
     }),
   );
-  
-  
+
+
   app.setViewEngine('hbs');
-//  app.use(compression());
+
+ // "origin": "*",
+  
+  app.enableCors({
+    "origin": false,
+    "methods": "DELETE",
+    "preflightContinue": false,
+    "optionsSuccessStatus": 204
+  });
+
+  //  app.use(compression());
   await app.listen(3000);
 }
 bootstrap();
