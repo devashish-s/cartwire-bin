@@ -4,26 +4,27 @@ import { AppModule } from './app.module';
 import { join } from 'path';
 import { engine } from 'express-handlebars';
 import { printName } from './hbs/helpers';
+import helmet from 'helmet';
+
 // import * as compression from 'compression';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(
     AppModule,
-    { logger: ['error', 'warn', 'log'] }
+    { logger: ['error', 'warn', 'log'] },
+    { cors: true }
   );
 
-  // "origin": "*",
- 
-/*
-    app.enableCors({
-      "origin": [
-        'https://www.google.com'
-      ],
-      "methods": "DELETE",
-      "preflightContinue": false,
-      "optionsSuccessStatus": 204
-    });
-*/
+  app.use(helmet());
+  app.enableCors({
+    "origin": [
+      "https://www.google.com"
+    ],
+    "methods": "DELETE",
+    "preflightContinue": false,
+    "optionsSuccessStatus": 204
+  });
+
 
   app.useStaticAssets(join(__dirname, '..', 'public'));
   app.setBaseViewsDir(join(__dirname, '..', 'views'));
