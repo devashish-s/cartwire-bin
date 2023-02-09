@@ -31,7 +31,7 @@ async function bootstrap() {
 
   // "origin": "*",
  
-
+/*
     app.enableCors({
       "origin": [
         'https://www.google.com'
@@ -40,6 +40,7 @@ async function bootstrap() {
       "preflightContinue": false,
       "optionsSuccessStatus": 204
     });
+*/
 
   //  app.use(compression());
   await app.listen(3000);

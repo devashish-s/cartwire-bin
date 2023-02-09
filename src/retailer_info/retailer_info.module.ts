@@ -1,13 +1,9 @@
-import { Module } from '@nestjs/common';
 import { RetailerInfoService } from './retailer_info.service';
+import { RetailerDataSchema } from './schema/retailer_info.schema';
 import { RetailerInfoController } from './retailer_info.controller';
 import { MongooseModule } from '@nestjs/mongoose';
-import { RetailerDataSchema } from './schema/retailer_info.schema';
 import { ConfigModule } from '@nestjs/config';
-
-console.log("===========>>>>>>>>>>>>>>>>>>>", process.env.DB_VAR);
-console.log("===========>>>>>>>>>>>>>>>>>>>", process.env.DB_CONNECT);
-console.log("===========>>>>>>>>>>>>>>>>>>>", process.env.DB_CONNECT_CW_SCRAPING_DB);
+import { Module } from '@nestjs/common';
 
 @Module({
   imports: [

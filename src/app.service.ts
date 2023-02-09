@@ -54,7 +54,7 @@ export class AppService {
 
    console.log(process.env.MY_SECRET);
    console.log(process.env.MY_SECRET_D);
-   console.log(process.env);
+  // console.log(process.env);
   // console.log(this.configService.get<string>('MY_SECRET'));
 
    // console.log(await accessSecretVersion("exploring-gcp-373314", "CARTWIRE_BIN_PROD_DATABASE"))
