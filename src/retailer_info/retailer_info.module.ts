@@ -4,6 +4,8 @@ import { RetailerInfoController } from './retailer_info.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { RetailerDataSchema } from './schema/retailer_info.schema';
 
+console.log("===========>>>>>>>>>>>>>>>>>>>", process.env.DB_VAR);
+console.log("===========>>>>>>>>>>>>>>>>>>>", process.env.DB_CONNECT);
 console.log("===========>>>>>>>>>>>>>>>>>>>", process.env.DB_CONNECT_CW_SCRAPING_DB);
 
 @Module({
