@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { IRetailerInfo } from './interface/retailer_info.interface';
 import { CreateRetailerInfoDto } from './dto/create-retailer_info.dto';
 import { UpdateRetailerInfoDto } from './dto/update-retailer_info.dto';
+import { InjectModel } from '@nestjs/mongoose';
 import { Model } from "mongoose";
 
 @Injectable()

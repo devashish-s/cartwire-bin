@@ -6,7 +6,7 @@ import { RetailerData } from './schema/retailer_info.schema';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb+srv://cw_admin_3:AwZ9uYWe8ctBkK5D@cartwirecluster0.bibl1.mongodb.net/cw_scraping_db'),
+    MongooseModule.forRoot(process.env.DB_CONNECT_CW_SCRAPING_DB),
     MongooseModule.forFeature([{ name: 'RetailerData', schema: RetailerData }])
   ],
   controllers: [RetailerInfoController],
