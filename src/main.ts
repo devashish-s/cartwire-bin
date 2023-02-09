@@ -12,6 +12,19 @@ async function bootstrap() {
     { logger: ['error', 'warn', 'log'] }
   );
 
+  // "origin": "*",
+ 
+/*
+    app.enableCors({
+      "origin": [
+        'https://www.google.com'
+      ],
+      "methods": "DELETE",
+      "preflightContinue": false,
+      "optionsSuccessStatus": 204
+    });
+*/
+
   app.useStaticAssets(join(__dirname, '..', 'public'));
   app.setBaseViewsDir(join(__dirname, '..', 'views'));
 
@@ -28,19 +41,6 @@ async function bootstrap() {
 
 
   app.setViewEngine('hbs');
-
-  // "origin": "*",
- 
-/*
-    app.enableCors({
-      "origin": [
-        'https://www.google.com'
-      ],
-      "methods": "DELETE",
-      "preflightContinue": false,
-      "optionsSuccessStatus": 204
-    });
-*/
 
   //  app.use(compression());
   await app.listen(3000);
