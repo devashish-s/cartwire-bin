@@ -1,9 +1,13 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { IRetailerInfo } from 'src/interface/retailer_info.interface';
 import { CreateRetailerInfoDto } from './dto/create-retailer_info.dto';
 import { UpdateRetailerInfoDto } from './dto/update-retailer_info.dto';
+import { Model } from "mongoose";
 
 @Injectable()
 export class RetailerInfoService {
+  constructor(@InjectModel('RetailerInfo') private retailerInfoModel: Model<IRetailerInfo>) { }
+
   create(createRetailerInfoDto: CreateRetailerInfoDto) {
     return 'This action adds a new retailerInfo';
   }
@@ -22,5 +26,13 @@ export class RetailerInfoService {
 
   remove(id: number) {
     return `This action removes a #${id} retailerInfo`;
+  }
+
+  async getRetailerInfo(retailerId: string): Promise<IRetailerInfo> {
+    const existingRetailerInfo = await this.retailerInfoModel.findById(retailerId).exec();
+    if (!existingRetailerInfo) {
+      throw new NotFoundException(`Retailer info #${retailerId} not found`);
+    }
+    return existingRetailerInfo;
   }
 }

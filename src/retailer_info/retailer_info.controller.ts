@@ -1,35 +1,35 @@
-import { Controller } from '@nestjs/common';
-import { MessagePattern, Payload } from '@nestjs/microservices';
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { RetailerInfoService } from './retailer_info.service';
 import { CreateRetailerInfoDto } from './dto/create-retailer_info.dto';
 import { UpdateRetailerInfoDto } from './dto/update-retailer_info.dto';
 
-@Controller()
+@Controller('retailer-info')
 export class RetailerInfoController {
-  constructor(private readonly retailerInfoService: RetailerInfoService) {}
+  constructor(private readonly retailerInfoService: RetailerInfoService) { }
 
-  @MessagePattern('createRetailerInfo')
-  create(@Payload() createRetailerInfoDto: CreateRetailerInfoDto) {
+  @Post()
+  create(@Body() createRetailerInfoDto: CreateRetailerInfoDto) {
     return this.retailerInfoService.create(createRetailerInfoDto);
   }
 
-  @MessagePattern('findAllRetailerInfo')
+  @Get()
   findAll() {
     return this.retailerInfoService.findAll();
   }
 
-  @MessagePattern('findOneRetailerInfo')
-  findOne(@Payload() id: number) {
-    return this.retailerInfoService.findOne(id);
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    //  return this.retailerInfoService.findOne(+id);
+    return this.retailerInfoService.getBinData(id);
   }
 
-  @MessagePattern('updateRetailerInfo')
-  update(@Payload() updateRetailerInfoDto: UpdateRetailerInfoDto) {
-    return this.retailerInfoService.update(updateRetailerInfoDto.id, updateRetailerInfoDto);
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateRetailerInfoDto: UpdateRetailerInfoDto) {
+    return this.retailerInfoService.update(+id, updateRetailerInfoDto);
   }
 
-  @MessagePattern('removeRetailerInfo')
-  remove(@Payload() id: number) {
-    return this.retailerInfoService.remove(id);
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.retailerInfoService.remove(+id);
   }
 }
