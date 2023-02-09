@@ -20,7 +20,7 @@ export class RetailerInfoController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     //  return this.retailerInfoService.findOne(+id);
-    return this.retailerInfoService.getBinData(id);
+    return this.retailerInfoService.getRetailerInfo(id);
   }
 
   @Patch(':id')
