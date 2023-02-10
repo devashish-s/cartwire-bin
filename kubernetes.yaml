@@ -1,3 +1,41 @@
+---
+apiVersion: external-secrets.io/v1beta1
+kind: SecretStore
+metadata:
+ name: dev-secret-store
+ namespace: dev
+spec:
+ provider:
+     gcpsm:  
+       projectID: cartwire-kubernetes-engine-457@exploring-gcp-373314.iam.gserviceaccount.com
+       auth:
+         workloadIdentity:
+           clusterLocation: us-central1-c
+           clusterName: cartwire-bin-cluster
+           serviceAccountRef:
+             name:  workload-identity-ksa
+
+---
+ 
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+ name: externalsecret
+ namespace: dev
+spec:
+ refreshInterval: 1m           
+ secretStoreRef:
+   kind: SecretStore
+   name: dev-secret-store              
+ target:
+   name:  workload-secret  
+   creationPolicy: Owner
+ data:
+ - secretKey: k8s-secret-key-testsecret  
+   remoteRef:
+     key: CARTWIRE_BIN_PROD_DATABASE
+
+---
 apiVersion: "apps/v1"
 kind: "Deployment"
 metadata:
@@ -19,6 +57,12 @@ spec:
       - name: "cartwirebinapp"
         image: "gcr.io/exploring-gcp-373314/github_devashish-s_cartwire-bin:latest"
         imagePullPolicy: Always
+#        env:
+#        - name: BERGLAS_SECRET
+#          value: $(gcloud secrets versions access latest --secret="CARTWIRE_BIN_PROD_DATABASE" --project="exploring-gcp-373314")
         env:
-        - name: BERGLAS_SECRET
-          value: $(gcloud secrets versions access latest --secret="CARTWIRE_BIN_PROD_DATABASE" --project="exploring-gcp-373314")
+        - name: WORKLOAD_SA
+          valueFrom:
+            secretKeyRef:
+              name: workload-secret
+              key: k8s-secret-key-testsecret
