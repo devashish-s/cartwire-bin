@@ -38,7 +38,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: cartwirebinapp
-  namespace: default
+#  namespace: default
+  namespace: dev
   labels:
     app: cartwirebinapp
 spec:
