@@ -15,13 +15,13 @@ async function bootstrap() {
   );
 
 //  app.use(helmet());
-/*  app.use(
+  app.use(
     helmet.contentSecurityPolicy({
       useDefaults: false,
       directives: {
-        defaultSrc: ["'self'", "https://s3-ap-southeast-1.amazonaws.com"],
-        scriptSrc: ["'self'", "https://s3-ap-southeast-1.amazonaws.com"],
-        imgSrc: ["'self'", "https://s3-ap-southeast-1.amazonaws.com"],
+        defaultSrc: ["'self'", "https://s3.cartwire.co"],
+        scriptSrc: ["'self'", "https://s3.cartwire.co"],
+        imgSrc: ["'self'", "https://s3.cartwire.co"],
         objectSrc: ["'none'"],
         upgradeInsecureRequests: [],
       },
@@ -36,7 +36,7 @@ async function bootstrap() {
     "preflightContinue": false,
     "optionsSuccessStatus": 204
   });
-*/
+
 
   app.useStaticAssets(join(__dirname, '..', 'public'));
   app.setBaseViewsDir(join(__dirname, '..', 'views'));
