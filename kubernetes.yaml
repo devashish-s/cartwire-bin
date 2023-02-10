@@ -7,7 +7,7 @@ metadata:
 spec:
  provider:
      gcpsm:  
-       projectID: cartwire-kubernetes-engine-457@exploring-gcp-373314.iam.gserviceaccount.com
+       projectID: exploring-gcp-373314
        auth:
          workloadIdentity:
            clusterLocation: us-central1-c
