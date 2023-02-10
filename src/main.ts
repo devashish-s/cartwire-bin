@@ -27,7 +27,7 @@ async function bootstrap() {
       },
     })
   );
-*/
+
   app.enableCors({
     "origin": [
       "https://www.google.com"
@@ -36,7 +36,7 @@ async function bootstrap() {
     "preflightContinue": false,
     "optionsSuccessStatus": 204
   });
-
+*/
 
   app.useStaticAssets(join(__dirname, '..', 'public'));
   app.setBaseViewsDir(join(__dirname, '..', 'views'));
