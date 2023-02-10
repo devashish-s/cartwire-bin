@@ -33,7 +33,9 @@ spec:
   - secretKey: k8s-secret-key-testsecret  
     remoteRef:
       key: CARTWIRE_BIN_PROD_DATABASE
+
 ---
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -65,5 +67,3 @@ spec:
             secretKeyRef:
               name: workload-secret
               key: k8s-secret-key-testsecret
-
----
