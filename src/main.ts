@@ -14,7 +14,20 @@ async function bootstrap() {
     { logger: ['error', 'warn', 'log'], cors: true },
   );
 
-  app.use(helmet());
+//  app.use(helmet());
+  app.use(
+    helmet.contentSecurityPolicy({
+      useDefaults: false,
+      directives: {
+        defaultSrc: ["'self'", "https://s3-ap-southeast-1.amazonaws.com"],
+        scriptSrc: ["'self'", "https://s3-ap-southeast-1.amazonaws.com"],
+        imgSrc: ["'self'", "https://s3-ap-southeast-1.amazonaws.com"],
+        objectSrc: ["'none'"],
+        upgradeInsecureRequests: [],
+      },
+    })
+  );
+
   app.enableCors({
     "origin": [
       "https://www.google.com"
