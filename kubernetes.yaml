@@ -2,38 +2,38 @@
 apiVersion: external-secrets.io/v1beta1
 kind: SecretStore
 metadata:
- name: dev-secret-store
- namespace: dev
+  name: dev-secret-store
+  namespace: dev
 spec:
- provider:
-     gcpsm:  
-       projectID: exploring-gcp-373314
-       auth:
-         workloadIdentity:
-           clusterLocation: us-central1-c
-           clusterName: cartwire-bin-cluster
-           serviceAccountRef:
-             name:  workload-identity-ksa
+  provider:
+    gcpsm:  
+      projectID: exploring-gcp-373314
+      auth:
+        workloadIdentity:
+          clusterLocation: us-central1-c
+          clusterName: cartwire-bin-cluster
+          serviceAccountRef:
+            name:  workload-identity-ksa
 
 ---
  
 apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
 metadata:
- name: externalsecret
- namespace: dev
+  name: externalsecret
+  namespace: dev
 spec:
- refreshInterval: 1m           
- secretStoreRef:
-   kind: SecretStore
-   name: dev-secret-store              
- target:
-   name:  workload-secret  
-   creationPolicy: Owner
- data:
- - secretKey: k8s-secret-key-testsecret  
-   remoteRef:
-     key: CARTWIRE_BIN_PROD_DATABASE
+  refreshInterval: 1m           
+  secretStoreRef:
+    kind: SecretStore
+    name: dev-secret-store              
+  target:
+    name: workload-secret  
+    creationPolicy: Owner
+  data:
+  - secretKey: k8s-secret-key-testsecret  
+    remoteRef:
+      key: CARTWIRE_BIN_PROD_DATABASE
 
 ---
 apiVersion: "apps/v1"
