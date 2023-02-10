@@ -15,7 +15,7 @@ async function bootstrap() {
   );
 
 //  app.use(helmet());
-  app.use(
+/*  app.use(
     helmet.contentSecurityPolicy({
       useDefaults: false,
       directives: {
@@ -27,7 +27,7 @@ async function bootstrap() {
       },
     })
   );
-
+*/
   app.enableCors({
     "origin": [
       "https://www.google.com"
