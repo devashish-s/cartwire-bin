@@ -9,9 +9,13 @@ import helmet from 'helmet';
 // import * as compression from 'compression';
 
 async function bootstrap() {
+
   const app = await NestFactory.create<NestExpressApplication>(
     AppModule,
-    { logger: ['error', 'warn', 'log'], cors: true },
+    {
+      logger: ['error', 'warn', 'log'],
+      cors: true,
+    },
   );
 
   //  app.use(helmet());
@@ -38,7 +42,7 @@ async function bootstrap() {
 
   app.enableCors(
     {
-      origin: ['https://betterjavacode.com', 'https://www.google.com'],
+      origin: 'https://betterjavacode.com',
       methods: ['POST', 'PUT', 'DELETE', 'GET']
     }
   );
@@ -69,7 +73,7 @@ async function bootstrap() {
       methods: ['POST', 'PUT', 'DELETE', 'GET']
     }
   );
-  
+
   await app.listen(3000);
 }
 bootstrap();
