@@ -67,27 +67,3 @@ spec:
             secretKeyRef:
               name: workload-secret
               key: k8s-secret-key-testsecret
-
----
-
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: dev-ingress
-  namespace: dev
-  annotations:
-    ingress.kubernetes.io/enable-cors: "true"
-    ingress.kubernetes.io/cors-allow-origin: "https://betterjavacode.com"
-    ingress.kubernetes.io/cors-allow-methods: "GET, POST, PUT, DELETE, OPTIONS"
-    ingress.kubernetes.io/cors-allow-headers: "Authorization, Content-Type"
-spec:
-  rules:
-  - http:
-      paths:
-      - path: /*
-        pathType: Prefix
-        backend:
-          service:
-            name: example-service
-            port:
-              name: http
