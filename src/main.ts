@@ -5,22 +5,16 @@ import { join } from 'path';
 import { engine } from 'express-handlebars';
 import { printName } from './hbs/helpers';
 import helmet from 'helmet';
-import cors from 'cors';
-
 
 // import * as compression from 'compression';
 
 async function bootstrap() {
-
   const app = await NestFactory.create<NestExpressApplication>(
     AppModule,
-    {
-      logger: ['error', 'warn', 'log'],
-      cors: true,
-    },
+    { logger: ['error', 'warn', 'log'], cors: true },
   );
 
-  //  app.use(helmet());
+//  app.use(helmet());
   app.use(
     helmet.contentSecurityPolicy({
       useDefaults: false,
@@ -33,23 +27,14 @@ async function bootstrap() {
       },
     })
   );
-//  app.use(helmet.hidePoweredBy());
 
-  /* app.enableCors({
+  app.enableCors({
     origin: [
       "https://www.google.com"
     ],
     methods: "DELETE",
     credentials: true,
   });
-
-  app.enableCors(
-    {
-      origin: 'https://betterjavacode.com',
-      methods: ['POST', 'PUT', 'DELETE', 'GET']
-    }
-  );
- */
 
 
   app.useStaticAssets(join(__dirname, '..', 'public'));
@@ -70,23 +55,6 @@ async function bootstrap() {
   app.setViewEngine('hbs');
 
   //  app.use(compression());
-  /*
-  app.enableCors(
-    {
-      origin: 'https://betterjavacode.com',
-      methods: ['POST', 'PUT', 'DELETE', 'GET']
-    }
-  ); */
-
-  app.use(cors({
-    origin: [
-      'https://betterjavacode.com'
-    ],
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Authorization', 'Content-Type']
-  }));
-  
-
   await app.listen(3000);
 }
 bootstrap();
@@ -94,5 +62,4 @@ bootstrap();
 /*
 Update the WSL kernel by running "wsl --update" or follow instructions at 
 https://docs.microsoft.com/windows/wsl/wsl2-kernel
-
 */
