@@ -4,7 +4,9 @@ import { AppModule } from './app.module';
 import { join } from 'path';
 import { engine } from 'express-handlebars';
 import { printName } from './hbs/helpers';
-import helmet from 'helmet';
+import { helmet } from 'helmet';
+import { cors } from 'cors';
+
 
 // import * as compression from 'compression';
 
@@ -39,7 +41,7 @@ async function bootstrap() {
     ],
     methods: "DELETE",
     credentials: true,
-  }); */
+  });
 
   app.enableCors(
     {
@@ -47,7 +49,7 @@ async function bootstrap() {
       methods: ['POST', 'PUT', 'DELETE', 'GET']
     }
   );
-
+ */
 
 
   app.useStaticAssets(join(__dirname, '..', 'public'));
@@ -68,12 +70,22 @@ async function bootstrap() {
   app.setViewEngine('hbs');
 
   //  app.use(compression());
+  /*
   app.enableCors(
     {
       origin: 'https://betterjavacode.com',
       methods: ['POST', 'PUT', 'DELETE', 'GET']
     }
-  );
+  ); */
+
+  app.use(cors({
+    origin: [
+      'https://betterjavacode.com'
+    ],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Authorization', 'Content-Type']
+  }));
+  
 
   await app.listen(3000);
 }
