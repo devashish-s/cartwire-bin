@@ -83,9 +83,4 @@ bootstrap();
 Update the WSL kernel by running "wsl --update" or follow instructions at 
 https://docs.microsoft.com/windows/wsl/wsl2-kernel
 
-
-
-https://widget.kritique.io/widget/ratingSummary?brand=BH0162&locale=en-gb&entityId=8710847962783&entityName=product&view=listing&apikey=C2C4E02F-788B-4619-8EEA-3CC3AA1FAAF3
-https://widget.kritique.io/widget/ratingSummary?brand=BH0162&locale=en-gb&entityId=8710847962769&entityName=product&view=detail&apikey=C2C4E02F-788B-4619-8EEA-3CC3AA1FAAF3
-https://widget.kritique.io/widget/readQuestion?brand=BH0162&locale=en-gb&entityId=8710847962769&paginationFlag=false&pageNumber=0&apikey=C2C4E02F-788B-4619-8EEA-3CC3AA1FAAF3&pageSize=10&sortBy=createdDate+desc&userAgent=desktop&currentPage=https:%2F%2Fwww.dove.com%2Fuk%2Fp%2Fdermaspa-gradual-self-tan-body-mousse-fair-to-medium.html%2F08710847962769
 */
