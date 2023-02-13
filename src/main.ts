@@ -31,6 +31,7 @@ async function bootstrap() {
       },
     })
   );
+  app.use(helmet.hidePoweredBy());
 
   /* app.enableCors({
     origin: [
