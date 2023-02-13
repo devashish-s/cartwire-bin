@@ -42,8 +42,8 @@ metadata:
   name: dev-ingress
   namespace: dev
   annotations:
-    ingress.kubernetes.io/enable-cors: "true"
-    ingress.kubernetes.io/cors-allow-origin: "http://localhost"
+    ingress.kubernetes.io/enable-cors: "false"
+#    ingress.kubernetes.io/cors-allow-origin: "http://localhost"
     ingress.kubernetes.io/cors-allow-methods: "GET, POST, PUT, DELETE, OPTIONS" 
 #    ingress.kubernetes.io/cors-allow-headers: "Authorization, Content-Type" http://localhost/cors-test.html
 spec:
