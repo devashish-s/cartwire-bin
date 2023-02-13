@@ -12,7 +12,7 @@ export class ErrorCodeController {
   create(@Body() createErrorCodeDto: CreateErrorCodeDto) {
     return this.errorCodeService.create(createErrorCodeDto);
   }
-  
+
   /*
     @Get()
     findAll() {
@@ -25,6 +25,7 @@ export class ErrorCodeController {
     return { ...request.params, ...request.query };
   }
 /*
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.errorCodeService.findOne(+id);

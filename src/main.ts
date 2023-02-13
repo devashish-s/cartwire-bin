@@ -14,7 +14,7 @@ async function bootstrap() {
     { logger: ['error', 'warn', 'log'], cors: true },
   );
 
-//  app.use(helmet());
+  //  app.use(helmet());
   app.use(
     helmet.contentSecurityPolicy({
       useDefaults: false,
@@ -28,14 +28,21 @@ async function bootstrap() {
     })
   );
 
-  app.enableCors({
-    "origin": [
+  /* app.enableCors({
+    origin: [
       "https://www.google.com"
     ],
-    "methods": "DELETE",
-    "preflightContinue": false,
-    "optionsSuccessStatus": 204
-  });
+    methods: "DELETE",
+    credentials: true,
+  }); */
+
+  app.enableCors(
+    {
+      origin: ['https://betterjavacode.com', 'https://www.google.com'],
+      methods: ['POST', 'PUT', 'DELETE', 'GET']
+    }
+  );
+
 
 
   app.useStaticAssets(join(__dirname, '..', 'public'));
@@ -56,6 +63,13 @@ async function bootstrap() {
   app.setViewEngine('hbs');
 
   //  app.use(compression());
+  app.enableCors(
+    {
+      origin: ['https://betterjavacode.com', 'https://www.google.com'],
+      methods: ['POST', 'PUT', 'DELETE', 'GET']
+    }
+  );
+  
   await app.listen(3000);
 }
 bootstrap();
