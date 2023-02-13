@@ -14,7 +14,7 @@ async function bootstrap() {
     AppModule,
     { logger: ['error', 'warn', 'log'] },
   );
-
+/*
   app.enableCors({
     origin: [
       "https://www.google.com"
@@ -22,7 +22,7 @@ async function bootstrap() {
     methods: "DELETE",
     credentials: true,
   });
-
+*/
   //  app.use(helmet());
   app.use(
     helmet.contentSecurityPolicy({
