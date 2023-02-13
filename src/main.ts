@@ -70,7 +70,7 @@ async function bootstrap() {
   //  app.use(compression());
   app.enableCors(
     {
-      origin: ['https://betterjavacode.com', 'https://www.google.com'],
+      origin: 'https://betterjavacode.com',
       methods: ['POST', 'PUT', 'DELETE', 'GET']
     }
   );
