@@ -5,16 +5,22 @@ import { join } from 'path';
 import { engine } from 'express-handlebars';
 import { printName } from './hbs/helpers';
 import helmet from 'helmet';
+import cors from 'cors';
 
 // import * as compression from 'compression';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(
     AppModule,
-    { logger: ['error', 'warn', 'log'], cors: true },
+    { logger: ['error', 'warn', 'log'] },
   );
+  app.use(cors({
+    origin: 'https://betterjavacode.com',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Authorization', 'Content-Type']
+  }));
 
-//  app.use(helmet());
+  //  app.use(helmet());
   app.use(
     helmet.contentSecurityPolicy({
       useDefaults: false,
@@ -27,15 +33,16 @@ async function bootstrap() {
       },
     })
   );
-
-  app.enableCors({
-    origin: [
-      "https://www.google.com"
-    ],
-    methods: "DELETE",
-    credentials: true,
-  });
-
+  /*
+    app.enableCors({
+      origin: [
+        "https://www.google.com"
+      ],
+      methods: "DELETE",
+      credentials: true,
+    });
+  */
+  
 
   app.useStaticAssets(join(__dirname, '..', 'public'));
   app.setBaseViewsDir(join(__dirname, '..', 'views'));
