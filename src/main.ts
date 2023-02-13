@@ -4,8 +4,8 @@ import { AppModule } from './app.module';
 import { join } from 'path';
 import { engine } from 'express-handlebars';
 import { printName } from './hbs/helpers';
-import { helmet } from 'helmet';
-import { cors } from 'cors';
+import helmet from 'helmet';
+import cors from 'cors';
 
 
 // import * as compression from 'compression';
