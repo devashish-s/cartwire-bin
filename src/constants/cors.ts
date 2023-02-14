@@ -4,4 +4,4 @@ const cors_allowed_domain = [
     "http://localhost",
 ]
 
-export default { cors_allowed_domain };
+export default cors_allowed_domain ;
