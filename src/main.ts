@@ -17,10 +17,9 @@ async function bootstrap() {
 
   app.enableCors({
     origin: [
-      "http://localhost"
+      "https://stpl.biz"
     ],
     methods: "DELETE",
-    credentials: true,
   });
 
   //  app.use(helmet());
