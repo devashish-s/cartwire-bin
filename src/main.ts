@@ -12,17 +12,17 @@ import helmet from 'helmet';
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(
     AppModule,
-    { logger: ['error', 'warn', 'log'] },
+    { logger: ['error', 'warn', 'log'], cors: true },
   );
-/*
+
   app.enableCors({
     origin: [
-      "https://www.google.com"
+      "http://localhost"
     ],
     methods: "DELETE",
     credentials: true,
   });
-*/
+
   //  app.use(helmet());
   app.use(
     helmet.contentSecurityPolicy({
