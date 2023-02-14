@@ -3,6 +3,7 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 import { AppModule } from './app.module';
 import { join } from 'path';
 import { engine } from 'express-handlebars';
+import cors_allowed_domain from './constants/cors' 
 import { printName } from './hbs/helpers';
 import helmet from 'helmet';
 // import cors from 'cors';
@@ -15,10 +16,9 @@ async function bootstrap() {
     { logger: ['error', 'warn', 'log'] },
   );
 
+  console.log("===>>>>",cors_allowed_domain);
   app.enableCors({
-    origin: [
-      "https://stpl.biz"
-    ],
+    origin: cors_allowed_domain,
     methods: "DELETE",
   });
 
