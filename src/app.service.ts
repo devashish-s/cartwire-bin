@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 const bin_info = require('../test.json');
-import { ConfigService } from '@nestjs/config';
+// import { ConfigService } from '@nestjs/config';
 
 const { SecretManagerServiceClient } = require('@google-cloud/secret-manager');
 
@@ -41,13 +41,13 @@ kubectl annotate serviceaccount admin-sa \
 @Injectable()
 export class AppService {
   //  getHello(): object {
-  constructor(private configService: ConfigService) { }
+//  constructor(private configService: ConfigService) { }
 
   async getHello() {
 
-    console.log(this.configService.get<string>('DB_CONNECT'));
-    console.log(this.configService.get<string>('DB_VAR'));
-    console.log(this.configService.get<string>('WORKLOAD_SA'));
+ //   console.log(this.configService.get<string>('DB_CONNECT'));
+ //   console.log(this.configService.get<string>('DB_VAR'));
+ //   console.log(this.configService.get<string>('WORKLOAD_SA'));
 
 
     // console.log('SECRET_PASSWORD-',this.configService.get<string>('SECRET_PASSWORD'));
