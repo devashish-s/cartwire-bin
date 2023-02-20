@@ -30,7 +30,7 @@ export class RetailerInfoController {
    // const retailer_info = '';
     let retailer_info = await this.cacheManager.get(`retailer-info-${id}`);
     //  return this.retailerInfoService.findOne(+id);
-    if(!retailer_info){
+    if(Object.keys(retailer_info).length === 0){
       await this.cacheManager.set(`retailer-info-${id}`, this.retailerInfoService.getRetailerInfo(id));
       retailer_info = await this.cacheManager.get(`retailer-info-${id}`);
     }
