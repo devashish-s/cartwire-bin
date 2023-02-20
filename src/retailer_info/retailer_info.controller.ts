@@ -27,9 +27,13 @@ export class RetailerInfoController {
   @UseInterceptors(CacheInterceptor)
   @Get(':id')
   async findOne(@Param('id') id: string) {
+   // const retailer_info = '';
+    let retailer_info = await this.cacheManager.get(`retailer-info-${id}`);
     //  return this.retailerInfoService.findOne(+id);
-    await this.cacheManager.set(`retailer-info-${id}`, this.retailerInfoService.getRetailerInfo(id));
-    const retailer_info = await this.cacheManager.get(`retailer-info-${id}`);
+    if(!retailer_info){
+      await this.cacheManager.set(`retailer-info-${id}`, this.retailerInfoService.getRetailerInfo(id));
+      retailer_info = await this.cacheManager.get(`retailer-info-${id}`);
+    }
     return retailer_info;
   }
 
