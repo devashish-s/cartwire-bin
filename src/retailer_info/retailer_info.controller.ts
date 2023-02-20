@@ -6,7 +6,7 @@ import { CreateRetailerInfoDto } from './dto/create-retailer_info.dto';
 import { UpdateRetailerInfoDto } from './dto/update-retailer_info.dto';
 
 @Controller('retailer-info')
-@UseInterceptors(CacheInterceptor)
+
 export class RetailerInfoController {
   constructor(
     @Inject(CACHE_MANAGER) private cacheManager: Cache,
@@ -24,6 +24,7 @@ export class RetailerInfoController {
     return this.retailerInfoService.findAll();
   }
 
+  @UseInterceptors(CacheInterceptor)
   @Get(':id')
   findOne(@Param('id') id: string) {
     //  return this.retailerInfoService.findOne(+id);
