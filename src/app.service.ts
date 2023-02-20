@@ -41,14 +41,12 @@ kubectl annotate serviceaccount admin-sa \
 @Injectable()
 export class AppService {
   //  getHello(): object {
-  constructor(private configService: ConfigService) { }
+  constructor(private configService: ConfigService) {}
 
   async getHello() {
-
     console.log(this.configService.get<string>('DB_CONNECT'));
     console.log(this.configService.get<string>('DB_VAR'));
     console.log(this.configService.get<string>('WORKLOAD_SA'));
-
 
     // console.log('SECRET_PASSWORD-',this.configService.get<string>('SECRET_PASSWORD'));
 
@@ -66,11 +64,7 @@ export class AppService {
 
     return { ...bin_info };
   }
-
-
-
 }
-
 
 async function accessSecretVersion(projectId: string, secretId: string) {
   // Create the client

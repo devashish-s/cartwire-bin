@@ -9,27 +9,23 @@ import helmet from 'helmet';
 // import * as compression from 'compression';
 
 async function bootstrap() {
-
-  const app = await NestFactory.create<NestExpressApplication>(
-    AppModule,
-    {
-      logger: ['error', 'warn', 'log'],
-      cors: true,
-    },
-  );
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, {
+    logger: ['error', 'warn', 'log'],
+    cors: true,
+  });
 
   //  app.use(helmet());
   app.use(
     helmet.contentSecurityPolicy({
       useDefaults: false,
       directives: {
-        defaultSrc: ["'self'", "https://s3.cartwire.co"],
-        scriptSrc: ["'self'", "https://s3.cartwire.co"],
-        imgSrc: ["'self'", "https://s3.cartwire.co"],
+        defaultSrc: ["'self'", 'https://s3.cartwire.co'],
+        scriptSrc: ["'self'", 'https://s3.cartwire.co'],
+        imgSrc: ["'self'", 'https://s3.cartwire.co'],
         objectSrc: ["'none'"],
         upgradeInsecureRequests: [],
       },
-    })
+    }),
   );
 
   /* app.enableCors({
@@ -40,14 +36,10 @@ async function bootstrap() {
     credentials: true,
   }); */
 
-  app.enableCors(
-    {
-      origin: 'https://betterjavacode.com',
-      methods: ['POST', 'PUT', 'DELETE', 'GET']
-    }
-  );
-
-
+  app.enableCors({
+    origin: 'https://betterjavacode.com',
+    methods: ['POST', 'PUT', 'DELETE', 'GET'],
+  });
 
   app.useStaticAssets(join(__dirname, '..', 'public'));
   app.setBaseViewsDir(join(__dirname, '..', 'views'));
@@ -63,16 +55,13 @@ async function bootstrap() {
     }),
   );
 
-
   app.setViewEngine('hbs');
 
   //  app.use(compression());
-  app.enableCors(
-    {
-      origin: ['https://betterjavacode.com', 'https://www.google.com'],
-      methods: ['POST', 'PUT', 'DELETE', 'GET']
-    }
-  );
+  app.enableCors({
+    origin: ['https://betterjavacode.com', 'https://www.google.com'],
+    methods: ['POST', 'PUT', 'DELETE', 'GET'],
+  });
 
   await app.listen(3000);
 }

@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Req } from '@nestjs/common';
+import {  Controller,  Get,  Post,  Body,  Patch,  Param,  Delete,  Req} from '@nestjs/common';
 import { ErrorCodeService } from './error_code.service';
 import { CreateErrorCodeDto } from './dto/create-error_code.dto';
 import { UpdateErrorCodeDto } from './dto/update-error_code.dto';
@@ -6,7 +6,9 @@ import { Request } from 'express';
 
 @Controller('widget_price_theme_new_v1')
 export class ErrorCodeController {
-  constructor(private readonly errorCodeService: ErrorCodeService) { }
+  constructor(
+    private readonly errorCodeService: ErrorCodeService
+    ) {}
 
   @Post()
   create(@Body() createErrorCodeDto: CreateErrorCodeDto) {
@@ -21,10 +23,12 @@ export class ErrorCodeController {
   */
 
   @Get(':framework')
-  getData(@Req() request: Request): Object {
-    return { ...request.params, ...request.query };
+  getData(@Req() request: Request) {
+    let widget_data = this.errorCodeService.findOne(request.query.keyVal, request.query.langCode);
+    return widget_data;
+    
   }
-/*
+  /*
 
   @Get(':id')
   findOne(@Param('id') id: string) {

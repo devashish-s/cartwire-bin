@@ -9,9 +9,12 @@ import { Module } from '@nestjs/common';
   imports: [
     ConfigModule.forRoot(),
     MongooseModule.forRoot(process.env.DB_CONNECT_CW_SCRAPING_DB),
-    MongooseModule.forFeature([{ name: 'RetailerInfo', schema: RetailerDataSchema }])
+    MongooseModule.forFeature([
+      { name: 'RetailerInfo', schema: RetailerDataSchema },
+    ]),
   ],
   controllers: [RetailerInfoController],
-  providers: [RetailerInfoService]
+  providers: [RetailerInfoService],
+  exports: [RetailerInfoService]
 })
 export class RetailerInfoModule {}

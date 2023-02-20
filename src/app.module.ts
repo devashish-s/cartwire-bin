@@ -6,12 +6,14 @@ import { WidgetModule } from './widget/widget.module';
 import { ConfigModule } from '@nestjs/config';
 import { RetailerInfoModule } from './retailer_info/retailer_info.module';
 
-
 @Module({
-  imports: [ConfigModule.forRoot(), ErrorCodeModule, WidgetModule, RetailerInfoModule],
+  imports: [
+    ConfigModule.forRoot(),
+    ErrorCodeModule,
+    WidgetModule,
+    RetailerInfoModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}
-
-
