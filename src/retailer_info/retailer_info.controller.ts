@@ -31,11 +31,11 @@ export class RetailerInfoController {
     let retailer_info = await this.cacheManager.get(`retailer-info-${id}`);
     //  return this.retailerInfoService.findOne(+id);
     console.log("=======>>>>>>>>>>>", retailer_info);
-    if (!retailer_info) {
-      if (Object.keys(retailer_info).length === 0) {
+    if (!retailer_info || Object.keys(retailer_info).length === 0) {
+//      if (Object.keys(retailer_info).length === 0) {
         await this.cacheManager.set(`retailer-info-${id}`, this.retailerInfoService.getRetailerInfo(id));
         retailer_info = await this.cacheManager.get(`retailer-info-${id}`);
-      }
+//      }
     }
     return retailer_info;
   }
