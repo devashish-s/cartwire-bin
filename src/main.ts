@@ -3,15 +3,22 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 import { AppModule } from './app.module';
 import { join } from 'path';
 import { engine } from 'express-handlebars';
+import cors_allowed_domain from './constants/cors' 
 import { printName } from './hbs/helpers';
 import helmet from 'helmet';
+// import cors from 'cors';
 
 // import * as compression from 'compression';
 
 async function bootstrap() {
-  const app = await NestFactory.create<NestExpressApplication>(AppModule, {
-    logger: ['error', 'warn', 'log'],
-    cors: true,
+  const app = await NestFactory.create<NestExpressApplication>(
+    AppModule,
+    { logger: ['error', 'warn', 'log'] },
+  );
+
+  app.enableCors({
+    origin: cors_allowed_domain,
+    methods: "DELETE",
   });
 
   //  app.use(helmet());
@@ -27,19 +34,19 @@ async function bootstrap() {
       },
     }),
   );
+  app.disable('x-powered-by')
 
-  /* app.enableCors({
-    origin: [
-      "https://www.google.com"
-    ],
-    methods: "DELETE",
-    credentials: true,
-  }); */
 
-  app.enableCors({
-    origin: 'https://betterjavacode.com',
-    methods: ['POST', 'PUT', 'DELETE', 'GET'],
-  });
+  /*
+    app.enableCors({
+      origin: [
+        "https://www.google.com"
+      ],
+      methods: "DELETE",
+      credentials: true,
+    });
+  */
+
 
   app.useStaticAssets(join(__dirname, '..', 'public'));
   app.setBaseViewsDir(join(__dirname, '..', 'views'));
@@ -58,11 +65,6 @@ async function bootstrap() {
   app.setViewEngine('hbs');
 
   //  app.use(compression());
-  app.enableCors({
-    origin: ['https://betterjavacode.com', 'https://www.google.com'],
-    methods: ['POST', 'PUT', 'DELETE', 'GET'],
-  });
-
   await app.listen(3000);
 }
 bootstrap();

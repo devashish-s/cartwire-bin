@@ -12,6 +12,7 @@ import { CreateRetailerInfoDto } from './dto/create-retailer_info.dto';
 import { UpdateRetailerInfoDto } from './dto/update-retailer_info.dto';
 
 @Controller('retailer-info')
+
 export class RetailerInfoController {
   constructor(private readonly retailerInfoService: RetailerInfoService) {}
 
