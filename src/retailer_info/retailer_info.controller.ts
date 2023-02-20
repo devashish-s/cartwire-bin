@@ -26,9 +26,11 @@ export class RetailerInfoController {
 
   @UseInterceptors(CacheInterceptor)
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  async findOne(@Param('id') id: string) {
     //  return this.retailerInfoService.findOne(+id);
-    return this.retailerInfoService.getRetailerInfo(id);
+    await this.cacheManager.set(`retailer-info-${id}`, this.retailerInfoService.getRetailerInfo(id));
+    const retailer_info = await this.cacheManager.get(`retailer-info-${id}`);
+    return retailer_info;
   }
 
   @Patch(':id')
