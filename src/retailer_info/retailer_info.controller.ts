@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors } from '@nestjs/common';
 import { CACHE_MANAGER, Inject, CacheInterceptor } from '@nestjs/common';
-import { Cache  } from 'cache-manager';
+import { Cache } from 'cache-manager';
 import { RetailerInfoService } from './retailer_info.service';
 import { CreateRetailerInfoDto } from './dto/create-retailer_info.dto';
 import { UpdateRetailerInfoDto } from './dto/update-retailer_info.dto';
@@ -11,7 +11,7 @@ export class RetailerInfoController {
   constructor(
     @Inject(CACHE_MANAGER) private cacheManager: Cache,
     private readonly retailerInfoService: RetailerInfoService
-    ) {}
+  ) { }
   //constructor(private readonly retailerInfoService: RetailerInfoService) { }
 
   @Post()
@@ -27,12 +27,15 @@ export class RetailerInfoController {
   @UseInterceptors(CacheInterceptor)
   @Get(':id')
   async findOne(@Param('id') id: string) {
-   // const retailer_info = '';
+    // const retailer_info = '';
     let retailer_info = await this.cacheManager.get(`retailer-info-${id}`);
     //  return this.retailerInfoService.findOne(+id);
-    if(Object.keys(retailer_info).length === 0){
-      await this.cacheManager.set(`retailer-info-${id}`, this.retailerInfoService.getRetailerInfo(id));
-      retailer_info = await this.cacheManager.get(`retailer-info-${id}`);
+    console.log("=======>>>>>>>>>>>", retailer_info);
+    if (!retailer_info) {
+      if (Object.keys(retailer_info).length === 0) {
+        await this.cacheManager.set(`retailer-info-${id}`, this.retailerInfoService.getRetailerInfo(id));
+        retailer_info = await this.cacheManager.get(`retailer-info-${id}`);
+      }
     }
     return retailer_info;
   }
