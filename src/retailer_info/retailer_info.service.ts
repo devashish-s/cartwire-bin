@@ -4,7 +4,6 @@ import { CreateRetailerInfoDto } from './dto/create-retailer_info.dto';
 import { UpdateRetailerInfoDto } from './dto/update-retailer_info.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from "mongoose";
-import { CACHE_MANAGER, Inject, CacheInterceptor } from '@nestjs/common';
 
 @Injectable()
 export class RetailerInfoService {
@@ -30,7 +29,6 @@ export class RetailerInfoService {
     return `This action removes a #${id} retailerInfo`;
   }
 
-  @UseInterceptors(CacheInterceptor)
   async getRetailerInfo(retailerId: string): Promise<IRetailerInfo> {
     const existingRetailerInfo = await this.retailerInfoModel.findById(retailerId).exec();
     if (!existingRetailerInfo) {
