@@ -3,12 +3,7 @@ import { IRetailerInfo } from './interface/retailer_info.interface';
 import { CreateRetailerInfoDto } from './dto/create-retailer_info.dto';
 import { UpdateRetailerInfoDto } from './dto/update-retailer_info.dto';
 import { InjectModel } from '@nestjs/mongoose';
-<<<<<<< HEAD
 import { Model } from 'mongoose';
-=======
-import { Model } from "mongoose";
-import { CACHE_MANAGER, Inject, CacheInterceptor } from '@nestjs/common';
->>>>>>> a56a7552fb7d989f079a10670c71236cc4c5a35f
 
 @Injectable()
 export class RetailerInfoService {
@@ -37,7 +32,6 @@ export class RetailerInfoService {
     return `This action removes a #${id} retailerInfo`;
   }
 
-<<<<<<< HEAD
   async getRetailerInfo(product_sku: string, brand_name: string) {
     const existingRetailerInfo = await this.retailerInfoModel
     .aggregate([
@@ -82,7 +76,13 @@ export class RetailerInfoService {
           xpath:{
             "$cond": {
               "if": {brand_name: brand_name},
-              "then": "$listing_page_url",
+              "then": {
+                "if": {listing_page_url:true},
+                "then":"",
+                "else":{
+                  
+                }
+              },
               "else": {
                 "$arrayElemAt": ["$bindata.xpath", 0]
               }
@@ -111,11 +111,6 @@ export class RetailerInfoService {
       },
     ])
     .exec();
-=======
-  @UseInterceptors(CacheInterceptor)
-  async getRetailerInfo(retailerId: string): Promise<IRetailerInfo> {
-    const existingRetailerInfo = await this.retailerInfoModel.findById(retailerId).exec();
->>>>>>> a56a7552fb7d989f079a10670c71236cc4c5a35f
     if (!existingRetailerInfo) {
       throw new NotFoundException(`Retailer info #${product_sku} not found`);
     }
