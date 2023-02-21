@@ -12,11 +12,10 @@ import * as hbs from 'hbs';
 // import * as compression from 'compression';
 
 async function bootstrap() {
-
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,
     new FastifyAdapter(),
-    {logger: ['error', 'warn', 'log']}
+    { logger: ['error', 'warn', 'log'] },
   );
   app.useStaticAssets({
     root: join(__dirname, '..', 'public'),
@@ -46,8 +45,8 @@ async function bootstrap() {
     }),
   );
   */
- 
-  const path = require("path")
+
+  const path = require('path');
   hbs.registerPartials(path.join(__dirname, '../', '/views/partials'));
   app.setViewEngine({
     engine: {
@@ -55,10 +54,10 @@ async function bootstrap() {
     },
     templates: join(__dirname, '..', 'views'),
   });
-  
-  // hbs.registerLayouts(join(__dirname, '..', '/views/layouts'));   
 
-//  app.use(compression());
+  // hbs.registerLayouts(join(__dirname, '..', '/views/layouts'));
+
+  //  app.use(compression());
   await app.listen(3000);
 }
 bootstrap();

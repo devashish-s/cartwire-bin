@@ -49,7 +49,6 @@ export class AppService {
  //   console.log(this.configService.get<string>('DB_VAR'));
  //   console.log(this.configService.get<string>('WORKLOAD_SA'));
 
-
     // console.log('SECRET_PASSWORD-',this.configService.get<string>('SECRET_PASSWORD'));
 
     console.log(process.env.MY_SECRET);
@@ -66,11 +65,7 @@ export class AppService {
 
     return { ...bin_info };
   }
-
-
-
 }
-
 
 async function accessSecretVersion(projectId: string, secretId: string) {
   // Create the client
