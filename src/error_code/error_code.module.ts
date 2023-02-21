@@ -4,9 +4,14 @@ import { ErrorCodeController } from './error_code.controller';
 import { WidgetService } from '../widget/widget.service';
 import { WidgetModule } from '../widget/widget.module';
 import { RetailerInfoModule } from '../retailer_info/retailer_info.module';
+import { CacheModule, Module, CacheInterceptor  } from '@nestjs/common';
 
 @Module({
   imports: [
+    CacheModule.register({
+      ttl: 1*60*60*1000, // 1 hours ttl
+      max: 5000, // maximum number of items in cache
+    }),
     WidgetModule,
     RetailerInfoModule
   ],
