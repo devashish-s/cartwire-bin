@@ -8,5 +8,6 @@ import { DatabaseModule } from '../database/database.module';
   imports: [DatabaseModule],
   controllers: [WidgetController],
   providers: [WidgetService, ...widgetProviders],
+  exports: [WidgetService],
 })
 export class WidgetModule {}

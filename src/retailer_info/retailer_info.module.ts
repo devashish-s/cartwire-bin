@@ -15,15 +15,12 @@ import { APP_INTERCEPTOR } from '@nestjs/core';
     }),
     ConfigModule.forRoot(),
     MongooseModule.forRoot(process.env.DB_CONNECT_CW_SCRAPING_DB),
-    MongooseModule.forFeature([{ name: 'RetailerInfo', schema: RetailerDataSchema }])
+    MongooseModule.forFeature([
+      { name: 'RetailerInfo', schema: RetailerDataSchema },
+    ]),
   ],
   controllers: [RetailerInfoController],
-  providers: [
-    {
-      provide: APP_INTERCEPTOR,
-      useClass: CacheInterceptor,
-    },
-    RetailerInfoService]
-
+  providers: [RetailerInfoService],
+  exports: [RetailerInfoService]
 })
 export class RetailerInfoModule {}

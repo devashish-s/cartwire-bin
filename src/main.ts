@@ -26,13 +26,13 @@ async function bootstrap() {
     helmet.contentSecurityPolicy({
       useDefaults: false,
       directives: {
-        defaultSrc: ["'self'", "https://s3.cartwire.co"],
-        scriptSrc: ["'self'", "https://s3.cartwire.co"],
-        imgSrc: ["'self'", "https://s3.cartwire.co"],
+        defaultSrc: ["'self'", 'https://s3.cartwire.co'],
+        scriptSrc: ["'self'", 'https://s3.cartwire.co'],
+        imgSrc: ["'self'", 'https://s3.cartwire.co'],
         objectSrc: ["'none'"],
         upgradeInsecureRequests: [],
       },
-    })
+    }),
   );
   app.disable('x-powered-by')
 
@@ -61,7 +61,6 @@ async function bootstrap() {
       helpers: { printName },
     }),
   );
-
 
   app.setViewEngine('hbs');
 

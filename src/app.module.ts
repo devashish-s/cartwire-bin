@@ -7,12 +7,9 @@ import { ConfigModule } from '@nestjs/config';
 import { RetailerInfoModule } from './retailer_info/retailer_info.module';
 import { AnalyticsModule } from './analytics/analytics.module';
 
-
 @Module({
   imports: [ConfigModule.forRoot(), ErrorCodeModule, WidgetModule, RetailerInfoModule, AnalyticsModule],
   controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}
-
-

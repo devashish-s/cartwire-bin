@@ -1,11 +1,35 @@
 import { Document } from 'mongoose';
-export interface IRetailerInfo extends Document{
-
-  readonly cw_id: Number;
-  readonly logo: String;
-  readonly name: String;
-  readonly crawl_day: String;
-  readonly crawl_region: String;
-  readonly crawl_save_time: String;
-  
+export interface IRetailerInfo extends Document {
+  readonly retailer_product_buy_now_url: String;
+  readonly retailer_has_product_in_stock: String;
+  readonly retailer_product_offers: String;
+  readonly retailer_product_category: String;
+  readonly retailer_product_sub_category: String;
+  readonly retailer_product_quantity: String;
+  readonly retailer_product_price: String;
+  readonly retailer_id: String;
+  readonly retailer_name: String;
+  readonly retailer_logo: String;
+  readonly ret_name: String;
+  readonly currency_symbol: String;
+  readonly xpath: String;
+  readonly is_app_enable: String;
+  readonly url: String;
+  readonly country_name: String;
+  readonly country_code: String;
+  readonly show_price: String;
+  readonly show_offer: String;
+  readonly brand_name: String;
+  readonly is_relationship_active: String;
+  readonly pdp_parameter: String;
+  readonly pdp_status: String;
+  readonly enable_tiny_url: String;
+  readonly brand_pdp_parameter: String;
+  readonly brand_pdp_status: String;
+  readonly brand_enable_tiny_url: String;
+  readonly product_id: String;
+  readonly retailer_product_sku: String;
+  readonly execution_prefernce: String;
+  readonly price_symbol_position: String;
+  readonly multipack: String;
 }

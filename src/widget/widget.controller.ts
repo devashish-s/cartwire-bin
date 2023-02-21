@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { WidgetService } from './widget.service';
 import { CreateWidgetDto } from './dto/create-widget.dto';
 import { UpdateWidgetDto } from './dto/update-widget.dto';
@@ -17,9 +25,13 @@ export class WidgetController {
     return this.widgetService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.widgetService.findOne(id);
+  @Get(':hash_key/:lang_code')
+  findOne(
+    @Param('hash_key') hash_key: string,
+    @Param('lang_code') lang_code: string,
+  ) {
+    console.log(hash_key, lang_code);
+    return this.widgetService.findOne(hash_key, lang_code);
   }
 
   @Patch(':id')

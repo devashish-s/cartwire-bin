@@ -1,6 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors } from '@nestjs/common';
-import { CACHE_MANAGER, Inject, CacheInterceptor } from '@nestjs/common';
-import { Cache } from 'cache-manager';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { RetailerInfoService } from './retailer_info.service';
 import { CreateRetailerInfoDto } from './dto/create-retailer_info.dto';
 import { UpdateRetailerInfoDto } from './dto/update-retailer_info.dto';
@@ -8,11 +14,7 @@ import { UpdateRetailerInfoDto } from './dto/update-retailer_info.dto';
 @Controller('retailer-info')
 
 export class RetailerInfoController {
-  constructor(
-    @Inject(CACHE_MANAGER) private cacheManager: Cache,
-    private readonly retailerInfoService: RetailerInfoService
-  ) { }
-  //constructor(private readonly retailerInfoService: RetailerInfoService) { }
+  constructor(private readonly retailerInfoService: RetailerInfoService) {}
 
   @Post()
   create(@Body() createRetailerInfoDto: CreateRetailerInfoDto) {
@@ -24,26 +26,17 @@ export class RetailerInfoController {
     return this.retailerInfoService.findAll();
   }
 
-  @UseInterceptors(CacheInterceptor)
-  @Get(':id')
-  async findOne(@Param('id') id: string) {
-/*    // const retailer_info = '';
-    let retailer_info = await this.cacheManager.get(`retailer-info-${id}`);
+  @Get(':product_sku/:brand_name')
+  findOne(@Param('product_sku') product_sku: string, @Param('brand_name') brand_name: string) {
     //  return this.retailerInfoService.findOne(+id);
-    console.log(`retailer-info-${id} =======>>>>>>>>>>>`, `retailer-info-${id}`);
-    if (!retailer_info || Object.keys(retailer_info).length === 0) {
-      console.log(`retailer-info-${id} --------<<<<<<<<`  );
-      await this.cacheManager.set(`retailer-info-${id}`, await this.retailerInfoService.getRetailerInfo(id), 300000 );
-      retailer_info = await this.cacheManager.get(`retailer-info-${id}`);
-    }
-
-    return await this.cacheManager.get(`retailer-info-${id}`);
-*/
-    return await this.retailerInfoService.getRetailerInfo(id);
+    return this.retailerInfoService.getRetailerInfo(product_sku, brand_name);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateRetailerInfoDto: UpdateRetailerInfoDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateRetailerInfoDto: UpdateRetailerInfoDto,
+  ) {
     return this.retailerInfoService.update(+id, updateRetailerInfoDto);
   }
 
