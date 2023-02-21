@@ -34,7 +34,7 @@ export class RetailerInfoController {
     if (!retailer_info || Object.keys(retailer_info).length === 0) {
       //      if (Object.keys(retailer_info).length === 0) {
       console.log(`retailer-info-${id} --------<<<<<<<<`  );
-      await this.cacheManager.set(`retailer-info-${id}`, await this.retailerInfoService.getRetailerInfo(id)  );
+      await this.cacheManager.set(`retailer-info-${id}`, await this.retailerInfoService.getRetailerInfo(id), 300000 );
       retailer_info = await this.cacheManager.get(`retailer-info-${id}`);
       //      }
     }

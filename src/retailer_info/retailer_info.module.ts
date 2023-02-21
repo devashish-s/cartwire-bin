@@ -11,7 +11,7 @@ import { APP_INTERCEPTOR } from '@nestjs/core';
   imports: [
     CacheModule.register({
       isGlobal: true,
-      ttl: 300, // seconds
+      ttl: 300000, // mili seconds
     }),
     ConfigModule.forRoot(),
     MongooseModule.forRoot(process.env.DB_CONNECT_CW_SCRAPING_DB),
