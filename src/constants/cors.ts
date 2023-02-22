@@ -2,7 +2,8 @@ const cors_allowed_domain = [
 
     /* "https://app.cartwire.co",
     "https://stage.app.cartwire.co", */
-    /^(https:\/\/([^\.]*\.)?cartwire\.co)$/i,
+    // /^(https:\/\/([^\.]*\.)?cartwire\.co)$/i,
+    /^(https?:\/\/([a-z0-9]+[\.])*cartwire[\.]com)$/i,
     "https://localhost",
     
     
