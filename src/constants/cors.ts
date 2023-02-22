@@ -1,7 +1,10 @@
 const cors_allowed_domain = [
-    "https://app.cartwire.co",
-    "https://stage.app.cartwire.co",
+
+    /* "https://app.cartwire.co",
+    "https://stage.app.cartwire.co", */
+    /^(https:\/\/([^\.]*\.)?cartwire\.co)$/i,
     "https://localhost",
+    
     
     /^(https:\/\/([^\.]*\.)?unileversolutions\.com)$/i,
     /^(https:\/\/([^\.]*\.)?netlify\.app)$/i,

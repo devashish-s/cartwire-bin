@@ -3,12 +3,12 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 import { AppModule } from './app.module';
 import { join } from 'path';
 import { engine } from 'express-handlebars';
-import cors_allowed_domain from './constants/cors' 
+import cors_allowed_domain from './constants/cors'
 import { printName } from './hbs/helpers';
 import helmet from 'helmet';
+import * as compression from 'compression';
 // import cors from 'cors';
 
-// import * as compression from 'compression';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(
@@ -64,7 +64,7 @@ async function bootstrap() {
 
   app.setViewEngine('hbs');
 
-  //  app.use(compression());
+  app.use(compression());
   await app.listen(3000);
 }
 bootstrap();
