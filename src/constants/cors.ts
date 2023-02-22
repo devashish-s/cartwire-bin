@@ -1,11 +1,10 @@
-const cors_allowed_domain = [
 
     /* "https://app.cartwire.co",
     "https://stage.app.cartwire.co", */
     // /^(https:\/\/([^\.]*\.)?cartwire\.co)$/i,
-    /^(https?:\/\/([a-z0-9]+[\.])*cartwire[\.]com)$/i,
+const cors_allowed_domain = [
+    /^(https?:\/\/([a-z0-9]+[\.])*cartwire[\.]co)/g,
     "https://localhost",
-    
     
     /^(https:\/\/([^\.]*\.)?unileversolutions\.com)$/i,
     /^(https:\/\/([^\.]*\.)?netlify\.app)$/i,
