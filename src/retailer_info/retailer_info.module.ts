@@ -4,7 +4,6 @@ import { RetailerInfoController } from './retailer_info.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
 import { CacheModule, Module, CacheInterceptor  } from '@nestjs/common';
-import { APP_INTERCEPTOR } from '@nestjs/core';
 
 
 @Module({
