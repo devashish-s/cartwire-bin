@@ -16,11 +16,14 @@ export class ErrorCodeController {
 
   @Get(':framework')
   getData(@Param('framework') framework: string, @Req() request: Request) {
+
+    console.log(framework);
+
     let widget_data;
     if(framework != 'errorCode'){
        widget_data = this.errorCodeService.findOne(request.query.keyVal, request.query.langCode);
     }else{
-       widget_data = {framework, request};
+       widget_data = framework;
     }
     
     return widget_data;
