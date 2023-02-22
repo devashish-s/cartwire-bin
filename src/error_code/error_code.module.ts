@@ -8,7 +8,7 @@ import { RetailerInfoModule } from '../retailer_info/retailer_info.module';
 @Module({
   imports: [
     CacheModule.register({
-      ttl: 1*60*60*1000, // 1 hours ttl
+      ttl: 2*60*1000, // 2 min ttl
       max: 5000, // maximum number of items in cache
     }),
     WidgetModule,
