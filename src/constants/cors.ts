@@ -4,7 +4,7 @@
     // /^(https:\/\/([^\.]*\.)?cartwire\.co)$/i,
 
 const cors_allowed_domain = [
-    /^(https?:\/\/([a-z0-9]+[\.])*cartwire[\.]co)/g,
+    /^(https?:\/\/([a-z0-9]+[\.])*cartwire[\.]co)$/i,
     "https://localhost",
     
     /^(https?:\/\/([a-z0-9]+[\.])*unileversolutions\.com)/g,
