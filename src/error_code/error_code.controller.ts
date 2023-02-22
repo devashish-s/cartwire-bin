@@ -1,5 +1,5 @@
 import {
-  Controller, Get, Req, UseInterceptors, CACHE_MANAGER, Inject, CacheInterceptor
+  Controller, Get, Req, Param, UseInterceptors, CACHE_MANAGER, Inject, CacheInterceptor
 } from '@nestjs/common';
 import { Cache } from 'cache-manager';
 import { ErrorCodeService } from './error_code.service';
@@ -15,8 +15,14 @@ export class ErrorCodeController {
   ) { }
 
   @Get(':framework')
-  getData(@Req() request: Request) {
-    let widget_data = this.errorCodeService.findOne(request.query.keyVal, request.query.langCode);
+  getData(@Param('framework') framework: string, @Req() request: Request) {
+    let widget_data;
+    if(framework == ''){
+       widget_data = this.errorCodeService.findOne(request.query.keyVal, request.query.langCode);
+    }else{
+       widget_data = {framework, request};
+    }
+    
     return widget_data;
 
   }
