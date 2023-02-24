@@ -1,17 +1,22 @@
+<style>
+   #cwMainDivContainer {
+      top: 780px;
+      /* position: absolute; */
+   }
+</style>
+<div id="cwMainDivContainer" class="cw_gride_widget">
+   <div id="main_contentdiv">
 
-<div id="cwMainDivContainer" class="cw_gride_widget" style="top: 780px; /* position: absolute; */">
-    <div id="main_contentdiv">
-       
-        {{>bin-header}} 
+      {{>bin-header}}
 
-       <div>
-          <div class="table_gride">
-             <span id="cwRetailsTbl">
-                {{>bin-retailer-head}}
-                {{>bin-retailer-content}}
-                {{>bin-retailer-footer}}
-             </span>
-          </div>
-       </div>
-    </div>
- </div>
+      <div>
+         <div class="table_gride">
+            <span id="cwRetailsTbl">
+               {{>bin-retailer-head}}
+               {{>bin-retailer-content}}
+               {{>bin-retailer-footer}}
+            </span>
+         </div>
+      </div>
+   </div>
+</div>
