@@ -27,8 +27,8 @@ async function bootstrap() {
       useDefaults: false,
       directives: {
         defaultSrc: ["'self'", 'https://s3.cartwire.co'],
-        styleSrc: ["'self' 'unsafe-inline'", 'https://s3.cartwire.co'],
-        scriptSrc: ["'self' 'unsafe-inline'", 'https://s3.cartwire.co'],
+        styleSrc: ["'self'", "'unsafe-inline'", 'https://s3.cartwire.co'],
+        scriptSrc: ["'self'", "'unsafe-inline'", 'https://s3.cartwire.co'],
         imgSrc: ["'self'", 'https://s3.cartwire.co'],
         objectSrc: ["'none'"],
         upgradeInsecureRequests: [],
