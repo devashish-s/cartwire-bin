@@ -27,7 +27,7 @@ export class WidgetService {
       .aggregate([
         {
           $match: {
-            language_code: { "$regex": lang_code },
+            language_code: {"$regex": lang_code},
             $or: [{ product_ean: hash_key }, { hash_key: hash_key }],
           },
         },
@@ -53,7 +53,7 @@ export class WidgetService {
             product_description: 1,
             language_code: 1,
             show_fixed_order: 1,
-            ga_id: { $ifNull: ["$ga_id", "0"] },
+            ga_id: { $ifNull: [ "$ga_id", "0" ] },
             report_suite_id: 1,
             brand_keyword: 1,
             table_header: { "$arrayElemAt": ["$bindata.table_header", 0] },
