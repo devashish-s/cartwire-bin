@@ -7,7 +7,6 @@ import { WidgetSchema } from './schemas/widget.schema';
 // import { widgetProviders } from './widget.providers';
 
 @Module({
-  // imports: [DatabaseModule],
   imports: [
     ConfigModule.forRoot(),
     MongooseModule.forRoot(process.env.DB_CONNECT),
@@ -16,7 +15,6 @@ import { WidgetSchema } from './schemas/widget.schema';
     ]),
   ],
   controllers: [WidgetController],
-//  providers: [WidgetService, ...widgetProviders],
   providers: [WidgetService],
   exports: [WidgetService],
 })
