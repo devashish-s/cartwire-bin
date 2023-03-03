@@ -114,7 +114,7 @@ export class WidgetService {
       throw new NotFoundException(`Widget #${hash_key} not found`);
     } 
     return existingWidget[0]; */
-    return [];
+    return {'product_sku':"sss", 'brand_name':"sss"};
   }
 
   update(id: any, updateWidgetDto: UpdateWidgetDto) {
