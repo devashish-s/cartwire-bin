@@ -7,10 +7,11 @@ import * as mongoose from 'mongoose';
 
 @Injectable()
 export class WidgetService {
-  constructor(
+
+/*  constructor(
     @Inject('WIDGET_MODEL')
     private widgetModel: Model<Widget>,
-  ) { }
+  ) { } */
 
   create(createWidgetDto: CreateWidgetDto) {
     return 'This action adds a new widget';
@@ -23,7 +24,7 @@ export class WidgetService {
 
   async findOne(hash_key: any, lang_code: any) {
     // const existingWidget = await this.widgetModel.findById(id).exec();
-    const existingWidget = await this.widgetModel
+   /* const existingWidget = await this.widgetModel
       .aggregate([
         {
           $match: {
@@ -111,8 +112,9 @@ export class WidgetService {
       .exec();
     if (!existingWidget) {
       throw new NotFoundException(`Widget #${hash_key} not found`);
-    }
-    return existingWidget[0];
+    } 
+    return existingWidget[0]; */
+    return [];
   }
 
   update(id: any, updateWidgetDto: UpdateWidgetDto) {
