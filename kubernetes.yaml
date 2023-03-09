@@ -65,7 +65,7 @@ kind: Deployment
 metadata:
   name: cartwire-bin-app
 #  namespace: default
-  namespace: dev
+  namespace: default
   labels:
     app: cartwire-bin-app
 spec:
