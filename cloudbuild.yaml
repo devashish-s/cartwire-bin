@@ -16,22 +16,22 @@ steps:
 #    args:
 #      - -c
 #      - |
-#        export MY_SECRET=$(gcloud secrets versions access latest --secret="CARTWIRE_BIN_PROD_DATABASE" --project="exploring-gcp-373314")
+#        export MY_SECRET=$(gcloud secrets versions access latest --secret="CARTWIRE_BIN_PROD_DATABASE" --project="cartwire-380103")
 
 #  - name: 'gcr.io/cloud-builders/gcloud'
 #    entrypoint: 'bash'
 #    args:
 #      - -c
 #      - |
-#        kubectl set env deployment my-deployment MY_ENV_VAR=$(gcloud secrets versions access latest --secret="CARTWIRE_BIN_PROD_DATABASE" --project="exploring-gcp-373314")
+#        kubectl set env deployment my-deployment MY_ENV_VAR=$(gcloud secrets versions access latest --secret="CARTWIRE_BIN_PROD_DATABASE" --project="cartwire-380103")
 
 #  - name: 'bash'
 #    script: |
 #      #!/usr/bin/env bash
-#      export SECRET_VALUE=$(gcloud secrets versions access latest --secret="CARTWIRE_BIN_PROD_DATABASE" --project="exploring-gcp-373314")
+#      export SECRET_VALUE=$(gcloud secrets versions access latest --secret="CARTWIRE_BIN_PROD_DATABASE" --project="cartwire-380103")
 
 #  - name: 'bash'
-#    args: ['echo', 'gcloud secrets versions access latest --secret="CARTWIRE_BIN_PROD_DATABASE" --project="exploring-gcp-373314"']
+#    args: ['echo', 'gcloud secrets versions access latest --secret="CARTWIRE_BIN_PROD_DATABASE" --project="cartwire-380103"']
 
   # execute the tests
 #  - name: 'gcr.io/cloud-builders/npm'
@@ -43,20 +43,20 @@ steps:
     
   # build an artifact using the docker builder
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/exploring-gcp-373314/github_devashish-s_cartwire-bin:latest', '.']
+    args: ['build', '-t', 'gcr.io/cartwire-380103/github_devashish-s_cartwire-bin:latest', '.']
 
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/exploring-gcp-373314/github_devashish-s_cartwire-bin']
+    args: ['push', 'gcr.io/cartwire-380103/github_devashish-s_cartwire-bin']
 
 # deploy container image to GKE
   - name: 'gcr.io/cloud-builders/gke-deploy'
     args:
     - run
     - --filename=kubernetes.yaml
-    - --image=gcr.io/exploring-gcp-373314/github_devashish-s_cartwire-bin
+    - --image=gcr.io/cartwire-380103/github_devashish-s_cartwire-bin
     - --location=us-central1-c
     - --cluster=cartwire-bin-cluster
   
 images:
-  - 'gcr.io/exploring-gcp-373314/github_devashish-s_cartwire-bin:latest'
+  - 'gcr.io/cartwire-380103/github_devashish-s_cartwire-bin:latest'
 timeout: 1200s

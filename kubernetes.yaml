@@ -6,7 +6,7 @@ metadata:
 spec:
   provider:
     gcpsm:  
-      projectID: exploring-gcp-373314
+      projectID: cartwire-380103
       auth:
         workloadIdentity:
           clusterLocation: us-central1-c
@@ -80,11 +80,11 @@ spec:
     spec:
       containers:
       - name: cartwirebinapp
-        image: gcr.io/exploring-gcp-373314/github_devashish-s_cartwire-bin:latest
+        image: gcr.io/cartwire-380103/github_devashish-s_cartwire-bin:latest
         imagePullPolicy: Always
 #        env:
 #        - name: BERGLAS_SECRET
-#          value: $(gcloud secrets versions access latest --secret="CARTWIRE_BIN_PROD_DATABASE" --project="exploring-gcp-373314")
+#          value: $(gcloud secrets versions access latest --secret="CARTWIRE_BIN_PROD_DATABASE" --project="cartwire-380103")
         env:
         - name: WORKLOAD_SA
           valueFrom:

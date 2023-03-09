@@ -1,5 +1,5 @@
 SECRET_NAME="CARTWIRE_BIN_PROD_DATABASE"
-PROJECT_ID="exploring-gcp-373314"
+PROJECT_ID="cartwire-380103"
 
 # retrieve the secret value
 SECRET_VALUE= gcloud secrets versions access latest --secret="$SECRET_NAME" --project="$PROJECT_ID"
