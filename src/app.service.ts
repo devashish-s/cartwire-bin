@@ -32,7 +32,7 @@ gcloud iam service-accounts add-iam-policy-binding readwrite-secrets@cartwire-38
     --namespace=readonly-ns \
     iam.gke.io/gcp-service-account=readonly-secrets@cartwire-380103.iam.gserviceaccount.com
 
-
+  
 kubectl annotate serviceaccount admin-sa \
     --namespace=admin-ns \
     iam.gke.io/gcp-service-account=readwrite-secrets@cartwire-380103.iam.gserviceaccount.com
